@@ -1,3 +1,5 @@
+//Normal calculator using functions
+
 #include <stdio.h>
 
 int sum(int a, int b) {
@@ -33,3 +35,5 @@ int main() {
     printf("div is = %f\n", divr);
     return 0;
 }
+
+// End of calculator.c
