@@ -1,0 +1,1 @@
+//write a c program using pointer, to print the address and value of each 10 element inside an array.
