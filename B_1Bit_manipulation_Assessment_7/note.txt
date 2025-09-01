@@ -1,0 +1,29 @@
+c alloc syntax (check)
+r alloc use code
+what is void pointer
+what is dangling pointer
+what is wild pointer
+
+1. Void Pointer
+A void * (void pointer) is a special type of pointer that can point to any data type.
+It is often used for generic data handling.
+
+
+void *ptr;int a = 10;ptr = &a; // ptr can point to int, float, char, etc.
+2. Dangling Pointer
+A dangling pointer is a pointer that points to memory that has been freed or is out of scope.
+Using a dangling pointer leads to undefined behavior.
+
+
+int *ptr = malloc(sizeof(int));free(ptr); // ptr is now dangling// *ptr here is dangerous!
+3. Wild Pointer
+A wild pointer is an uninitialized pointer.
+It points to some arbitrary location and using it can cause unpredictable results.
+
+
+int *ptr; // Not initialized, wild pointer*ptr = 5; // Dangerous!
+Summary:
+
+Void pointer: Generic pointer, can point to any type.
+Dangling pointer: Points to memory that is no longer valid.
+Wild pointer: Uninitialized pointer, points to unknown memory.
