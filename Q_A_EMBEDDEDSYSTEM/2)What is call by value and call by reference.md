@@ -39,6 +39,7 @@ int main() {
     return 0;
 }
 ```
+
 ## ✅ Key Difference
 - **Call by Value:** Function gets a copy → original is safe.
 - **Call by Reference:** Function gets the address → original can be changed.

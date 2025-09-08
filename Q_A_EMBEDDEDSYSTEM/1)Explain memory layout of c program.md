@@ -51,6 +51,7 @@
 ![alt text](image.png)
 
 
+
 ---
 
 ## Example C Program
@@ -95,6 +96,7 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 ```  
+
 
 
 # Program Output (Table Format)

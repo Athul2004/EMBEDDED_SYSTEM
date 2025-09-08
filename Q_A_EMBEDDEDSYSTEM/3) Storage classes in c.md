@@ -18,6 +18,7 @@ void func() {
     printf("%d", a);
 }
 ```
+
 ## 2. register
 
 - Suggests storing the variable in a CPU register for faster access.
@@ -71,4 +72,4 @@ printf("%d", num);
 | extern        | Global (all files)     | Entire program  | 0             | `extern int z;`   |
 
 
-![alt text](image-3.png)
+![alt text](image-4.png)

@@ -38,3 +38,4 @@ int *arr = (int*) malloc(10 * sizeof(int));
 ```
 
 ![alt text](image-6.png)
+

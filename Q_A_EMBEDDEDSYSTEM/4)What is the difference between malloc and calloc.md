@@ -24,3 +24,4 @@ ptr = (int*) calloc(n, sizeof(int));
 | Parameters     | Takes **1** argument (total size) | Takes **2** arguments (no. of blocks, size of each) |
 | Speed          | Faster (no initialization)        | Slightly slower (due to zeroing)                    |
 | Use case       | When you’ll assign values later   | When you want a zero-initialized array              |
+
