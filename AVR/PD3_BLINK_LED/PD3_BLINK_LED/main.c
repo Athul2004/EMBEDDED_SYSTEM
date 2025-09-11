@@ -4,8 +4,6 @@
  * Created: 10-09-2025 20:43:08
  * Author : KICHU
  */ 
-//1. Write a program to blink LED Connected to PD3 pin of an ATMEGA 328. Simulate in Siumul ide
-
 
 #define F_CPU 16000000UL
 #include <avr/io.h>
