@@ -1,9 +1,11 @@
+
 /*
- * TIMER0_OVERFLOW_INTERRUPT.c
+ * EXT_INTRRUPT.c
  *
- * Created: 02-10-2025 21:35:50
+ * Created: 05-10-2025 13:24:42
  * Author : KICHU
  */ 
+
 #define F_CPU 16000000UL
 #include <avr/io.h>
 #include <avr/interrupt.h>
@@ -27,7 +29,11 @@ int main(void)
 	while (1)
 	{
 		PORTB^=(1<<PORTB4);
-		_delay_ms(3000);
+		_delay_ms(1000);
 	}
 	
 }
+
+
+
+
