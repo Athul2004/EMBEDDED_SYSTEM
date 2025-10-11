@@ -15,11 +15,14 @@ void printBinary(unsigned char n) {
 }
 int main()
 {
-    unsigned char reg = 0b00101101; 
-    printf("Original register: ");
+    unsigned char reg;
+    
+    printf("Enter 8 bit value: ");
+    scanf("%hhu", &reg);
+    printf("You entered value: ");
     printBinary(reg);
     reg = modifyRegistervalue(reg); 
-    printf("Modified register: ");
+    printf("Modified register value: ");
     printBinary(reg);
     return 0;
 }
