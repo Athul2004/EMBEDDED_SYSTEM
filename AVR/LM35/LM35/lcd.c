@@ -145,3 +145,26 @@ void lcd_print_uint16(uint16_t v)
 	}
 	lcd_data('0' + (v % 10));       				// then print the last digit
 }
+void lcd_print_float(float value)
+{
+	if (value < 0)
+	{
+		lcd_data('-');
+		value = -value;
+	}
+	
+	uint16_t int_part = (uint16_t)value;
+	lcd_print_uint16(int_part);
+	
+	lcd_data('.');
+	
+	float frac = value - int_part;
+	frac = frac * 100.0f;
+	uint16_t frac_part = (uint16_t)(frac + 0.5f);
+	
+	if (frac_part < 10)
+	lcd_data('0');
+	
+	lcd_print_uint16(frac_part);
+	
+}

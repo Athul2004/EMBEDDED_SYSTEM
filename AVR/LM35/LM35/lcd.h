@@ -39,6 +39,7 @@ void lcd_print(const char *s);
 void lcd_clear(void);
 void lcd_home(void);
 void lcd_print_uint16(uint16_t v);
+void lcd_print_float(float value);
 
 
 
