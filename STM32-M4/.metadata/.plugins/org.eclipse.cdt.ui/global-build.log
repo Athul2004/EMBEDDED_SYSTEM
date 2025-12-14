@@ -1,0 +1,21 @@
+20:39:00 **** Incremental Build of configuration Debug for project OLED_DISPLAY_I2C ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "OLED_DISPLAY_I2C.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\KICHU\Documents\OLED_DISPLAY_I2C\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="OLED_DISPLAY_I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: OLED_DISPLAY_I2C.elf
+ 
+arm-none-eabi-size  OLED_DISPLAY_I2C.elf 
+arm-none-eabi-objdump -h -S OLED_DISPLAY_I2C.elf  > "OLED_DISPLAY_I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  23312	     28	   2756	  26096	   65f0	OLED_DISPLAY_I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: OLED_DISPLAY_I2C.list
+ 
+20:39:11 **** Incremental Build of configuration Debug for project OLED_DISPLAY_I2C ****
+make -j8 all 
+arm-none-eabi-size  OLED_DISPLAY_I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23312	     28	   2756	  26096	   65f0	OLED_DISPLAY_I2C.elf
+Finished building: default.size.stdout
+ 

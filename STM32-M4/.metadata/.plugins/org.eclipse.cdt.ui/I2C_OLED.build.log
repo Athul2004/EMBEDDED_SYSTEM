@@ -1,0 +1,55 @@
+22:18:06 **** Incremental Build of configuration Debug for project I2C_OLED ****
+make -j8 all 
+arm-none-eabi-gcc "../Drivers/CMSIS/NN/Source/ReshapeFunctions/arm_reshape_s8.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/CMSIS/NN/Source/ReshapeFunctions/arm_reshape_s8.d" -MT"Drivers/CMSIS/NN/Source/ReshapeFunctions/arm_reshape_s8.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/CMSIS/NN/Source/ReshapeFunctions/arm_reshape_s8.o"
+arm-none-eabi-gcc "../Drivers/CMSIS/NN/Source/PoolingFunctions/arm_avgpool_s16.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/CMSIS/NN/Source/PoolingFunctions/arm_avgpool_s16.d" -MT"Drivers/CMSIS/NN/Source/PoolingFunctions/arm_avgpool_s16.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/CMSIS/NN/Source/PoolingFunctions/arm_avgpool_s16.o"
+arm-none-eabi-gcc "../Drivers/CMSIS/NN/Source/PoolingFunctions/arm_avgpool_s8.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/CMSIS/NN/Source/PoolingFunctions/arm_avgpool_s8.d" -MT"Drivers/CMSIS/NN/Source/PoolingFunctions/arm_avgpool_s8.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/CMSIS/NN/Source/PoolingFunctions/arm_avgpool_s8.o"
+arm-none-eabi-gcc "../Drivers/CMSIS/NN/Source/PoolingFunctions/arm_max_pool_s16.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/CMSIS/NN/Source/PoolingFunctions/arm_max_pool_s16.d" -MT"Drivers/CMSIS/NN/Source/PoolingFunctions/arm_max_pool_s16.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/CMSIS/NN/Source/PoolingFunctions/arm_max_pool_s16.o"
+arm-none-eabi-gcc "../Drivers/CMSIS/NN/Source/PoolingFunctions/arm_max_pool_s8.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/CMSIS/NN/Source/PoolingFunctions/arm_max_pool_s8.d" -MT"Drivers/CMSIS/NN/Source/PoolingFunctions/arm_max_pool_s8.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/CMSIS/NN/Source/PoolingFunctions/arm_max_pool_s8.o"
+arm-none-eabi-gcc "../Drivers/CMSIS/NN/Source/PoolingFunctions/arm_pool_q7_HWC.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/CMSIS/NN/Source/PoolingFunctions/arm_pool_q7_HWC.d" -MT"Drivers/CMSIS/NN/Source/PoolingFunctions/arm_pool_q7_HWC.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/CMSIS/NN/Source/PoolingFunctions/arm_pool_q7_HWC.o"
+arm-none-eabi-gcc "../Drivers/CMSIS/NN/Source/NNSupportFunctions/arm_nn_accumulate_q7_to_q15.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/CMSIS/NN/Source/NNSupportFunctions/arm_nn_accumulate_q7_to_q15.d" -MT"Drivers/CMSIS/NN/Source/NNSupportFunctions/arm_nn_accumulate_q7_to_q15.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/CMSIS/NN/Source/NNSupportFunctions/arm_nn_accumulate_q7_to_q15.o"
+arm-none-eabi-gcc "../Drivers/CMSIS/NN/Source/NNSupportFunctions/arm_nn_add_q7.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/CMSIS/NN/Source/NNSupportFunctions/arm_nn_add_q7.d" -MT"Drivers/CMSIS/NN/Source/NNSupportFunctions/arm_nn_add_q7.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/CMSIS/NN/Source/NNSupportFunctions/arm_nn_add_q7.o"
+../Drivers/CMSIS/NN/Source/ReshapeFunctions/arm_reshape_s8.c:31:10: fatal error: arm_nnfunctions.h: No such file or directory
+   31 | #include "arm_nnfunctions.h"
+      |          ^~~~~~~~~~~~~~~~~~~
+compilation terminated.
+../Drivers/CMSIS/NN/Source/PoolingFunctions/arm_avgpool_s16.c:31:10: fatal error: arm_nnfunctions.h: No such file or directory
+   31 | #include "arm_nnfunctions.h"
+      |          ^~~~~~~~~~~~~~~~~~~
+compilation terminated.
+../Drivers/CMSIS/NN/Source/PoolingFunctions/arm_avgpool_s8.c:31:10: fatal error: arm_nnfunctions.h: No such file or directory
+   31 | #include "arm_nnfunctions.h"
+      |          ^~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Drivers/CMSIS/NN/Source/ReshapeFunctions/subdir.mk:19: Drivers/CMSIS/NN/Source/ReshapeFunctions/arm_reshape_s8.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Drivers/CMSIS/NN/Source/PoolingFunctions/subdir.mk:31: Drivers/CMSIS/NN/Source/PoolingFunctions/arm_avgpool_s8.o] Error 1
+make: *** [Drivers/CMSIS/NN/Source/PoolingFunctions/subdir.mk:31: Drivers/CMSIS/NN/Source/PoolingFunctions/arm_avgpool_s16.o] Error 1
+../Drivers/CMSIS/NN/Source/PoolingFunctions/arm_max_pool_s16.c:31:10: fatal error: arm_nnfunctions.h: No such file or directory
+   31 | #include "arm_nnfunctions.h"
+      |          ^~~~~~~~~~~~~~~~~~~
+compilation terminated.
+../Drivers/CMSIS/NN/Source/PoolingFunctions/arm_pool_q7_HWC.c:31:10: fatal error: arm_nnfunctions.h: No such file or directory
+   31 | #include "arm_nnfunctions.h"
+      |          ^~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Drivers/CMSIS/NN/Source/PoolingFunctions/subdir.mk:31: Drivers/CMSIS/NN/Source/PoolingFunctions/arm_max_pool_s16.o] Error 1
+../Drivers/CMSIS/NN/Source/PoolingFunctions/arm_max_pool_s8.c:31:10: fatal error: arm_nnfunctions.h: No such file or directory
+   31 | #include "arm_nnfunctions.h"
+      |          ^~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Drivers/CMSIS/NN/Source/PoolingFunctions/subdir.mk:31: Drivers/CMSIS/NN/Source/PoolingFunctions/arm_pool_q7_HWC.o] Error 1
+../Drivers/CMSIS/NN/Source/NNSupportFunctions/arm_nn_accumulate_q7_to_q15.c:31:10: fatal error: arm_nnfunctions.h: No such file or directory
+   31 | #include "arm_nnfunctions.h"
+      |          ^~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Drivers/CMSIS/NN/Source/PoolingFunctions/subdir.mk:31: Drivers/CMSIS/NN/Source/PoolingFunctions/arm_max_pool_s8.o] Error 1
+../Drivers/CMSIS/NN/Source/NNSupportFunctions/arm_nn_add_q7.c:31:10: fatal error: arm_nn_tables.h: No such file or directory
+   31 | #include "arm_nn_tables.h"
+      |          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Drivers/CMSIS/NN/Source/NNSupportFunctions/subdir.mk:70: Drivers/CMSIS/NN/Source/NNSupportFunctions/arm_nn_accumulate_q7_to_q15.o] Error 1
+make: *** [Drivers/CMSIS/NN/Source/NNSupportFunctions/subdir.mk:70: Drivers/CMSIS/NN/Source/NNSupportFunctions/arm_nn_add_q7.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+
+22:18:10 Build Failed. 17 errors, 0 warnings. (took 3s.441ms)
+
