@@ -1,2 +1,4 @@
-../Src/main.c:24:6:delay_ms	3
-../Src/main.c:40:5:main	1
+../Src/main.c:25:5:main	2
+../Src/main.c:35:6:UART2_Init	1
+../Src/main.c:60:6:UART2_Write	2
+../Src/main.c:65:6:print_hello	2

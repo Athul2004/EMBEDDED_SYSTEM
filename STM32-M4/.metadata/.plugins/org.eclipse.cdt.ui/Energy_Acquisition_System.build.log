@@ -1,0 +1,841 @@
+01:19:37 **** Build of configuration Debug for project Energy_Acquisition_System ****
+make -j8 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f446retx.d" -MT"Startup/startup_stm32f446retx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Startup/startup_stm32f446retx.o" "../Startup/startup_stm32f446retx.s"
+arm-none-eabi-gcc "../Src/drivers/adc.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Inc/drivers" -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/CMSIS/Core/Include" -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/drivers/adc.d" -MT"Src/drivers/adc.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/drivers/adc.o"
+arm-none-eabi-gcc "../Src/drivers/gpio.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Inc/drivers" -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/CMSIS/Core/Include" -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/drivers/gpio.d" -MT"Src/drivers/gpio.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/drivers/gpio.o"
+arm-none-eabi-gcc "../Src/drivers/rcc.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Inc/drivers" -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/CMSIS/Core/Include" -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/drivers/rcc.d" -MT"Src/drivers/rcc.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/drivers/rcc.o"
+arm-none-eabi-gcc "../Src/drivers/timer.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Inc/drivers" -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/CMSIS/Core/Include" -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/drivers/timer.d" -MT"Src/drivers/timer.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/drivers/timer.o"
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Inc/drivers" -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/CMSIS/Core/Include" -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Inc/drivers" -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/CMSIS/Core/Include" -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Inc/drivers" -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/CMSIS/Core/Include" -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/sysmem.o"
+In file included from ../Src/drivers/rcc.c:9:
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:183:3: error: unknown type name '__IO'
+  183 |   __IO uint32_t SR;     /*!< ADC status register,                         Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:183:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'SR'
+  183 |   __IO uint32_t SR;     /*!< ADC status register,                         Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:207:3: error: unknown type name '__IO'
+  207 |   __IO uint32_t CSR;    /*!< ADC Common status register,                  Address offset: ADC1 base address + 0x300 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:207:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CSR'
+  207 |   __IO uint32_t CSR;    /*!< ADC Common status register,                  Address offset: ADC1 base address + 0x300 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:220:3: error: unknown type name '__IO'
+  220 |   __IO uint32_t TIR;  /*!< CAN TX mailbox identifier register */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:220:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'TIR'
+  220 |   __IO uint32_t TIR;  /*!< CAN TX mailbox identifier register */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:232:3: error: unknown type name '__IO'
+  232 |   __IO uint32_t RIR;  /*!< CAN receive FIFO mailbox identifier register */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:232:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'RIR'
+  232 |   __IO uint32_t RIR;  /*!< CAN receive FIFO mailbox identifier register */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:244:3: error: unknown type name '__IO'
+  244 |   __IO uint32_t FR1; /*!< CAN Filter bank register 1 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:244:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'FR1'
+  244 |   __IO uint32_t FR1; /*!< CAN Filter bank register 1 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:254:3: error: unknown type name '__IO'
+  254 |   __IO uint32_t              MCR;                 /*!< CAN master control register,         Address offset: 0x00          */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:254:30: error: expected ':', ',', ';', '}' or '__attribute__' before 'MCR'
+  254 |   __IO uint32_t              MCR;                 /*!< CAN master control register,         Address offset: 0x00          */
+      |                              ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:285:3: error: unknown type name '__IO'
+  285 |   __IO uint32_t CR;           /*!< CEC control register,              Address offset:0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:285:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  285 |   __IO uint32_t CR;           /*!< CEC control register,              Address offset:0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:298:3: error: unknown type name '__IO'
+  298 |   __IO uint32_t DR;         /*!< CRC Data register,             Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:298:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'DR'
+  298 |   __IO uint32_t DR;         /*!< CRC Data register,             Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:311:3: error: unknown type name '__IO'
+  311 |   __IO uint32_t CR;       /*!< DAC control register,                                    Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:311:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  311 |   __IO uint32_t CR;       /*!< DAC control register,                                    Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:333:3: error: unknown type name '__IO'
+  333 |   __IO uint32_t IDCODE;  /*!< MCU device ID code,               Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:333:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'IDCODE'
+  333 |   __IO uint32_t IDCODE;  /*!< MCU device ID code,               Address offset: 0x00 */
+      |                 ^~~~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:345:3: error: unknown type name '__IO'
+  345 |   __IO uint32_t CR;       /*!< DCMI control register 1,                       Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:345:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  345 |   __IO uint32_t CR;       /*!< DCMI control register 1,                       Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:364:3: error: unknown type name '__IO'
+  364 |   __IO uint32_t CR;     /*!< DMA stream x configuration register      */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:364:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  364 |   __IO uint32_t CR;     /*!< DMA stream x configuration register      */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:374:3: error: unknown type name '__IO'
+  374 |   __IO uint32_t LISR;   /*!< DMA low interrupt status register,      Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:374:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'LISR'
+  374 |   __IO uint32_t LISR;   /*!< DMA low interrupt status register,      Address offset: 0x00 */
+      |                 ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:386:3: error: unknown type name '__IO'
+  386 |   __IO uint32_t IMR;    /*!< EXTI Interrupt mask register,            Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:386:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'IMR'
+  386 |   __IO uint32_t IMR;    /*!< EXTI Interrupt mask register,            Address offset: 0x00 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:400:3: error: unknown type name '__IO'
+  400 |   __IO uint32_t ACR;      /*!< FLASH access control register,   Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:400:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'ACR'
+  400 |   __IO uint32_t ACR;      /*!< FLASH access control register,   Address offset: 0x00 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:415:3: error: unknown type name '__IO'
+  415 |   __IO uint32_t BTCR[8];    /*!< NOR/PSRAM chip-select control register(BCR) and chip-select timing register(BTR), Address offset: 0x00-1C */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:415:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'BTCR'
+  415 |   __IO uint32_t BTCR[8];    /*!< NOR/PSRAM chip-select control register(BCR) and chip-select timing register(BTR), Address offset: 0x00-1C */
+      |                 ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:424:3: error: unknown type name '__IO'
+  424 |   __IO uint32_t BWTR[7];    /*!< NOR/PSRAM write timing registers, Address offset: 0x104-0x11C */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:424:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'BWTR'
+  424 |   __IO uint32_t BWTR[7];    /*!< NOR/PSRAM write timing registers, Address offset: 0x104-0x11C */
+      |                 ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:433:3: error: unknown type name '__IO'
+  433 |   __IO uint32_t PCR;       /*!< NAND Flash control register,                       Address offset: 0x80 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:433:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'PCR'
+  433 |   __IO uint32_t PCR;       /*!< NAND Flash control register,                       Address offset: 0x80 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:447:3: error: unknown type name '__IO'
+  447 |   __IO uint32_t SDCR[2];        /*!< SDRAM Control registers ,      Address offset: 0x140-0x144  */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:447:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'SDCR'
+  447 |   __IO uint32_t SDCR[2];        /*!< SDRAM Control registers ,      Address offset: 0x140-0x144  */
+      |                 ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:460:3: error: unknown type name '__IO'
+  460 |   __IO uint32_t MODER;    /*!< GPIO port mode register,               Address offset: 0x00      */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:460:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'MODER'
+  460 |   __IO uint32_t MODER;    /*!< GPIO port mode register,               Address offset: 0x00      */
+      |                 ^~~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:477:3: error: unknown type name '__IO'
+  477 |   __IO uint32_t MEMRMP;       /*!< SYSCFG memory remap register,                      Address offset: 0x00      */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:477:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'MEMRMP'
+  477 |   __IO uint32_t MEMRMP;       /*!< SYSCFG memory remap register,                      Address offset: 0x00      */
+      |                 ^~~~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:492:3: error: unknown type name '__IO'
+  492 |   __IO uint32_t CR1;        /*!< I2C Control register 1,     Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:492:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR1'
+  492 |   __IO uint32_t CR1;        /*!< I2C Control register 1,     Address offset: 0x00 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:510:3: error: unknown type name '__IO'
+  510 |   __IO uint32_t CR1;         /*!< FMPI2C Control register 1,            Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:510:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR1'
+  510 |   __IO uint32_t CR1;         /*!< FMPI2C Control register 1,            Address offset: 0x00 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:529:3: error: unknown type name '__IO'
+  529 |   __IO uint32_t KR;   /*!< IWDG Key register,       Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:529:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'KR'
+  529 |   __IO uint32_t KR;   /*!< IWDG Key register,       Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:542:3: error: unknown type name '__IO'
+  542 |   __IO uint32_t CR;   /*!< PWR power control register,        Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:542:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  542 |   __IO uint32_t CR;   /*!< PWR power control register,        Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:552:3: error: unknown type name '__IO'
+  552 |   __IO uint32_t CR;            /*!< RCC clock control register,                                  Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:552:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  552 |   __IO uint32_t CR;            /*!< RCC clock control register,                                  Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:594:3: error: unknown type name '__IO'
+  594 |   __IO uint32_t TR;      /*!< RTC time register,                                        Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:594:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'TR'
+  594 |   __IO uint32_t TR;      /*!< RTC time register,                                        Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:642:3: error: unknown type name '__IO'
+  642 |   __IO uint32_t GCR;      /*!< SAI global configuration register,        Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:642:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'GCR'
+  642 |   __IO uint32_t GCR;      /*!< SAI global configuration register,        Address offset: 0x00 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:647:3: error: unknown type name '__IO'
+  647 |   __IO uint32_t CR1;      /*!< SAI block x configuration register 1,     Address offset: 0x04 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:647:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR1'
+  647 |   __IO uint32_t CR1;      /*!< SAI block x configuration register 1,     Address offset: 0x04 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:663:3: error: unknown type name '__IO'
+  663 |   __IO uint32_t POWER;                 /*!< SDIO power control register,    Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:663:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'POWER'
+  663 |   __IO uint32_t POWER;                 /*!< SDIO power control register,    Address offset: 0x00 */
+      |                 ^~~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:691:3: error: unknown type name '__IO'
+  691 |   __IO uint32_t CR1;        /*!< SPI control register 1 (not used in I2S mode),      Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:691:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR1'
+  691 |   __IO uint32_t CR1;        /*!< SPI control register 1 (not used in I2S mode),      Address offset: 0x00 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:708:3: error: unknown type name '__IO'
+  708 |   __IO uint32_t CR;       /*!< QUADSPI Control register,                           Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:708:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  708 |   __IO uint32_t CR;       /*!< QUADSPI Control register,                           Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:729:3: error: unknown type name '__IO'
+  729 |   __IO uint32_t   CR;           /*!< Control register,                   Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:729:19: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  729 |   __IO uint32_t   CR;           /*!< Control register,                   Address offset: 0x00 */
+      |                   ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:747:3: error: unknown type name '__IO'
+  747 |   __IO uint32_t CR1;         /*!< TIM control register 1,              Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:747:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR1'
+  747 |   __IO uint32_t CR1;         /*!< TIM control register 1,              Address offset: 0x00 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:776:3: error: unknown type name '__IO'
+  776 |   __IO uint32_t SR;         /*!< USART Status register,                   Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:776:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'SR'
+  776 |   __IO uint32_t SR;         /*!< USART Status register,                   Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:791:3: error: unknown type name '__IO'
+  791 |   __IO uint32_t CR;   /*!< WWDG Control register,       Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:791:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  791 |   __IO uint32_t CR;   /*!< WWDG Control register,       Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:800:3: error: unknown type name '__IO'
+  800 |   __IO uint32_t GOTGCTL;              /*!< USB_OTG Control and Status Register          000h */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:800:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'GOTGCTL'
+  800 |   __IO uint32_t GOTGCTL;              /*!< USB_OTG Control and Status Register          000h */
+      |                 ^~~~~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:831:3: error: unknown type name '__IO'
+  831 |   __IO uint32_t DCFG;            /*!< dev Configuration Register   800h */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:831:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'DCFG'
+  831 |   __IO uint32_t DCFG;            /*!< dev Configuration Register   800h */
+      |                 ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:858:3: error: unknown type name '__IO'
+  858 |   __IO uint32_t DIEPCTL;           /*!< dev IN Endpoint Control Reg    900h + (ep_num * 20h) + 00h */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:858:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'DIEPCTL'
+  858 |   __IO uint32_t DIEPCTL;           /*!< dev IN Endpoint Control Reg    900h + (ep_num * 20h) + 00h */
+      |                 ^~~~~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:873:3: error: unknown type name '__IO'
+  873 |   __IO uint32_t DOEPCTL;       /*!< dev OUT Endpoint Control Reg           B00h + (ep_num * 20h) + 00h */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:873:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'DOEPCTL'
+  873 |   __IO uint32_t DOEPCTL;       /*!< dev OUT Endpoint Control Reg           B00h + (ep_num * 20h) + 00h */
+      |                 ^~~~~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:887:3: error: unknown type name '__IO'
+  887 |   __IO uint32_t HCFG;             /*!< Host Configuration Register          400h */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:887:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'HCFG'
+  887 |   __IO uint32_t HCFG;             /*!< Host Configuration Register          400h */
+      |                 ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:901:3: error: unknown type name '__IO'
+  901 |   __IO uint32_t HCCHAR;           /*!< Host Channel Characteristics Register    500h */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:901:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'HCCHAR'
+  901 |   __IO uint32_t HCCHAR;           /*!< Host Channel Characteristics Register    500h */
+      |                 ^~~~~~
+arm-none-eabi-gcc "../Src/system_stm32f4xx.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Inc/drivers" -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/CMSIS/Core/Include" -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/system_stm32f4xx.d" -MT"Src/system_stm32f4xx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/system_stm32f4xx.o"
+../Src/drivers/rcc.c: In function 'rcc_init':
+../Src/drivers/rcc.c:15:8: error: 'RCC_TypeDef' has no member named 'CR'
+   15 |     RCC->CR |= RCC_CR_HSION;
+      |        ^~
+../Src/drivers/rcc.c:16:17: error: 'RCC_TypeDef' has no member named 'CR'
+   16 |     while (!(RCC->CR & RCC_CR_HSIRDY));
+      |                 ^~
+../Src/drivers/rcc.c:19:8: error: 'RCC_TypeDef' has no member named 'PLLCFGR'
+   19 |     RCC->PLLCFGR = (16U << RCC_PLLCFGR_PLLM_Pos) |
+      |        ^~
+../Src/drivers/rcc.c:24:8: error: 'RCC_TypeDef' has no member named 'CR'
+   24 |     RCC->CR |= RCC_CR_PLLON;
+      |        ^~
+../Src/drivers/rcc.c:25:17: error: 'RCC_TypeDef' has no member named 'CR'
+   25 |     while (!(RCC->CR & RCC_CR_PLLRDY));
+      |                 ^~
+In file included from ../Inc/platform.h:15,
+                 from ../Src/main.c:19:
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:183:3: error: unknown type name '__IO'
+  183 |   __IO uint32_t SR;     /*!< ADC status register,                         Address offset: 0x00 */
+      |   ^~~~
+../Src/drivers/rcc.c:28:10: error: 'FLASH_TypeDef' has no member named 'ACR'
+   28 |     FLASH->ACR = FLASH_ACR_LATENCY_2WS |
+      |          ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:183:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'SR'
+  183 |   __IO uint32_t SR;     /*!< ADC status register,                         Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:207:3: error: unknown type name '__IO'
+  207 |   __IO uint32_t CSR;    /*!< ADC Common status register,                  Address offset: ADC1 base address + 0x300 */
+      |   ^~~~
+../Src/drivers/rcc.c:34:8: error: 'RCC_TypeDef' has no member named 'CFGR'
+   34 |     RCC->CFGR |= RCC_CFGR_SW_PLL;
+      |        ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:207:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CSR'
+  207 |   __IO uint32_t CSR;    /*!< ADC Common status register,                  Address offset: ADC1 base address + 0x300 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:220:3: error: unknown type name '__IO'
+  220 |   __IO uint32_t TIR;  /*!< CAN TX mailbox identifier register */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:220:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'TIR'
+  220 |   __IO uint32_t TIR;  /*!< CAN TX mailbox identifier register */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:232:3: error: unknown type name '__IO'
+  232 |   __IO uint32_t RIR;  /*!< CAN receive FIFO mailbox identifier register */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:232:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'RIR'
+  232 |   __IO uint32_t RIR;  /*!< CAN receive FIFO mailbox identifier register */
+      |                 ^~~
+../Src/drivers/rcc.c:35:16: error: 'RCC_TypeDef' has no member named 'CFGR'
+   35 |     while ((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_PLL);
+      |                ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:244:3: error: unknown type name '__IO'
+  244 |   __IO uint32_t FR1; /*!< CAN Filter bank register 1 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:244:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'FR1'
+  244 |   __IO uint32_t FR1; /*!< CAN Filter bank register 1 */
+      |                 ^~~
+../Src/drivers/rcc.c:38:8: error: 'RCC_TypeDef' has no member named 'AHB1ENR'
+   38 |     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+      |        ^~
+../Src/drivers/rcc.c:39:8: error: 'RCC_TypeDef' has no member named 'APB1ENR'
+   39 |     RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
+      |        ^~
+../Src/drivers/rcc.c:40:8: error: 'RCC_TypeDef' has no member named 'APB2ENR'
+   40 |     RCC->APB2ENR |= RCC_APB2ENR_ADC1EN;
+      |        ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:254:3: error: unknown type name '__IO'
+  254 |   __IO uint32_t              MCR;                 /*!< CAN master control register,         Address offset: 0x00          */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:254:30: error: expected ':', ',', ';', '}' or '__attribute__' before 'MCR'
+  254 |   __IO uint32_t              MCR;                 /*!< CAN master control register,         Address offset: 0x00          */
+      |                              ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:285:3: error: unknown type name '__IO'
+  285 |   __IO uint32_t CR;           /*!< CEC control register,              Address offset:0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:285:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  285 |   __IO uint32_t CR;           /*!< CEC control register,              Address offset:0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:298:3: error: unknown type name '__IO'
+  298 |   __IO uint32_t DR;         /*!< CRC Data register,             Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:298:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'DR'
+  298 |   __IO uint32_t DR;         /*!< CRC Data register,             Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:311:3: error: unknown type name '__IO'
+  311 |   __IO uint32_t CR;       /*!< DAC control register,                                    Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:311:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  311 |   __IO uint32_t CR;       /*!< DAC control register,                                    Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:333:3: error: unknown type name '__IO'
+  333 |   __IO uint32_t IDCODE;  /*!< MCU device ID code,               Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:333:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'IDCODE'
+  333 |   __IO uint32_t IDCODE;  /*!< MCU device ID code,               Address offset: 0x00 */
+      |                 ^~~~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:345:3: error: unknown type name '__IO'
+  345 |   __IO uint32_t CR;       /*!< DCMI control register 1,                       Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:345:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  345 |   __IO uint32_t CR;       /*!< DCMI control register 1,                       Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:364:3: error: unknown type name '__IO'
+  364 |   __IO uint32_t CR;     /*!< DMA stream x configuration register      */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:364:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  364 |   __IO uint32_t CR;     /*!< DMA stream x configuration register      */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:374:3: error: unknown type name '__IO'
+  374 |   __IO uint32_t LISR;   /*!< DMA low interrupt status register,      Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:374:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'LISR'
+  374 |   __IO uint32_t LISR;   /*!< DMA low interrupt status register,      Address offset: 0x00 */
+      |                 ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:386:3: error: unknown type name '__IO'
+  386 |   __IO uint32_t IMR;    /*!< EXTI Interrupt mask register,            Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:386:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'IMR'
+  386 |   __IO uint32_t IMR;    /*!< EXTI Interrupt mask register,            Address offset: 0x00 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:400:3: error: unknown type name '__IO'
+  400 |   __IO uint32_t ACR;      /*!< FLASH access control register,   Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:400:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'ACR'
+  400 |   __IO uint32_t ACR;      /*!< FLASH access control register,   Address offset: 0x00 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:415:3: error: unknown type name '__IO'
+  415 |   __IO uint32_t BTCR[8];    /*!< NOR/PSRAM chip-select control register(BCR) and chip-select timing register(BTR), Address offset: 0x00-1C */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:415:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'BTCR'
+  415 |   __IO uint32_t BTCR[8];    /*!< NOR/PSRAM chip-select control register(BCR) and chip-select timing register(BTR), Address offset: 0x00-1C */
+      |                 ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:424:3: error: unknown type name '__IO'
+  424 |   __IO uint32_t BWTR[7];    /*!< NOR/PSRAM write timing registers, Address offset: 0x104-0x11C */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:424:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'BWTR'
+  424 |   __IO uint32_t BWTR[7];    /*!< NOR/PSRAM write timing registers, Address offset: 0x104-0x11C */
+      |                 ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:433:3: error: unknown type name '__IO'
+  433 |   __IO uint32_t PCR;       /*!< NAND Flash control register,                       Address offset: 0x80 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:433:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'PCR'
+  433 |   __IO uint32_t PCR;       /*!< NAND Flash control register,                       Address offset: 0x80 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:447:3: error: unknown type name '__IO'
+  447 |   __IO uint32_t SDCR[2];        /*!< SDRAM Control registers ,      Address offset: 0x140-0x144  */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:447:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'SDCR'
+  447 |   __IO uint32_t SDCR[2];        /*!< SDRAM Control registers ,      Address offset: 0x140-0x144  */
+      |                 ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:460:3: error: unknown type name '__IO'
+  460 |   __IO uint32_t MODER;    /*!< GPIO port mode register,               Address offset: 0x00      */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:460:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'MODER'
+  460 |   __IO uint32_t MODER;    /*!< GPIO port mode register,               Address offset: 0x00      */
+      |                 ^~~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:477:3: error: unknown type name '__IO'
+  477 |   __IO uint32_t MEMRMP;       /*!< SYSCFG memory remap register,                      Address offset: 0x00      */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:477:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'MEMRMP'
+  477 |   __IO uint32_t MEMRMP;       /*!< SYSCFG memory remap register,                      Address offset: 0x00      */
+      |                 ^~~~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:492:3: error: unknown type name '__IO'
+  492 |   __IO uint32_t CR1;        /*!< I2C Control register 1,     Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:492:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR1'
+  492 |   __IO uint32_t CR1;        /*!< I2C Control register 1,     Address offset: 0x00 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:510:3: error: unknown type name '__IO'
+  510 |   __IO uint32_t CR1;         /*!< FMPI2C Control register 1,            Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:510:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR1'
+  510 |   __IO uint32_t CR1;         /*!< FMPI2C Control register 1,            Address offset: 0x00 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:529:3: error: unknown type name '__IO'
+  529 |   __IO uint32_t KR;   /*!< IWDG Key register,       Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:529:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'KR'
+  529 |   __IO uint32_t KR;   /*!< IWDG Key register,       Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:542:3: error: unknown type name '__IO'
+  542 |   __IO uint32_t CR;   /*!< PWR power control register,        Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:542:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  542 |   __IO uint32_t CR;   /*!< PWR power control register,        Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:552:3: error: unknown type name '__IO'
+  552 |   __IO uint32_t CR;            /*!< RCC clock control register,                                  Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:552:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  552 |   __IO uint32_t CR;            /*!< RCC clock control register,                                  Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:594:3: error: unknown type name '__IO'
+  594 |   __IO uint32_t TR;      /*!< RTC time register,                                        Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:594:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'TR'
+  594 |   __IO uint32_t TR;      /*!< RTC time register,                                        Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:642:3: error: unknown type name '__IO'
+  642 |   __IO uint32_t GCR;      /*!< SAI global configuration register,        Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:642:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'GCR'
+  642 |   __IO uint32_t GCR;      /*!< SAI global configuration register,        Address offset: 0x00 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:647:3: error: unknown type name '__IO'
+  647 |   __IO uint32_t CR1;      /*!< SAI block x configuration register 1,     Address offset: 0x04 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:647:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR1'
+  647 |   __IO uint32_t CR1;      /*!< SAI block x configuration register 1,     Address offset: 0x04 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:663:3: error: unknown type name '__IO'
+  663 |   __IO uint32_t POWER;                 /*!< SDIO power control register,    Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:663:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'POWER'
+  663 |   __IO uint32_t POWER;                 /*!< SDIO power control register,    Address offset: 0x00 */
+      |                 ^~~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:691:3: error: unknown type name '__IO'
+  691 |   __IO uint32_t CR1;        /*!< SPI control register 1 (not used in I2S mode),      Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:691:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR1'
+  691 |   __IO uint32_t CR1;        /*!< SPI control register 1 (not used in I2S mode),      Address offset: 0x00 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:708:3: error: unknown type name '__IO'
+  708 |   __IO uint32_t CR;       /*!< QUADSPI Control register,                           Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:708:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  708 |   __IO uint32_t CR;       /*!< QUADSPI Control register,                           Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:729:3: error: unknown type name '__IO'
+  729 |   __IO uint32_t   CR;           /*!< Control register,                   Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:729:19: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  729 |   __IO uint32_t   CR;           /*!< Control register,                   Address offset: 0x00 */
+      |                   ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:747:3: error: unknown type name '__IO'
+  747 |   __IO uint32_t CR1;         /*!< TIM control register 1,              Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:747:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR1'
+  747 |   __IO uint32_t CR1;         /*!< TIM control register 1,              Address offset: 0x00 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:776:3: error: unknown type name '__IO'
+  776 |   __IO uint32_t SR;         /*!< USART Status register,                   Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:776:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'SR'
+  776 |   __IO uint32_t SR;         /*!< USART Status register,                   Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:791:3: error: unknown type name '__IO'
+  791 |   __IO uint32_t CR;   /*!< WWDG Control register,       Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:791:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  791 |   __IO uint32_t CR;   /*!< WWDG Control register,       Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:800:3: error: unknown type name '__IO'
+  800 |   __IO uint32_t GOTGCTL;              /*!< USB_OTG Control and Status Register          000h */
+      |   ^~~~
+make: *** [Src/drivers/subdir.mk:28: Src/drivers/rcc.o] Error 1
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:800:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'GOTGCTL'
+  800 |   __IO uint32_t GOTGCTL;              /*!< USB_OTG Control and Status Register          000h */
+      |                 ^~~~~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:831:3: error: unknown type name '__IO'
+  831 |   __IO uint32_t DCFG;            /*!< dev Configuration Register   800h */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:831:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'DCFG'
+  831 |   __IO uint32_t DCFG;            /*!< dev Configuration Register   800h */
+      |                 ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:858:3: error: unknown type name '__IO'
+  858 |   __IO uint32_t DIEPCTL;           /*!< dev IN Endpoint Control Reg    900h + (ep_num * 20h) + 00h */
+      |   ^~~~
+make: *** Waiting for unfinished jobs....
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:858:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'DIEPCTL'
+  858 |   __IO uint32_t DIEPCTL;           /*!< dev IN Endpoint Control Reg    900h + (ep_num * 20h) + 00h */
+      |                 ^~~~~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:873:3: error: unknown type name '__IO'
+  873 |   __IO uint32_t DOEPCTL;       /*!< dev OUT Endpoint Control Reg           B00h + (ep_num * 20h) + 00h */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:873:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'DOEPCTL'
+  873 |   __IO uint32_t DOEPCTL;       /*!< dev OUT Endpoint Control Reg           B00h + (ep_num * 20h) + 00h */
+      |                 ^~~~~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:887:3: error: unknown type name '__IO'
+  887 |   __IO uint32_t HCFG;             /*!< Host Configuration Register          400h */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:887:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'HCFG'
+  887 |   __IO uint32_t HCFG;             /*!< Host Configuration Register          400h */
+      |                 ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:901:3: error: unknown type name '__IO'
+  901 |   __IO uint32_t HCCHAR;           /*!< Host Channel Characteristics Register    500h */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:901:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'HCCHAR'
+  901 |   __IO uint32_t HCCHAR;           /*!< Host Channel Characteristics Register    500h */
+      |                 ^~~~~~
+../Src/main.c: In function 'main':
+../Src/main.c:25:9: warning: implicit declaration of function '__NOP' [-Wimplicit-function-declaration]
+   25 |         __NOP();
+      |         ^~~~~
+make: *** [Src/subdir.mk:28: Src/main.o] Error 1
+In file included from ../Inc/platform.h:15,
+                 from ../Src/system_stm32f4xx.c:9:
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:183:3: error: unknown type name '__IO'
+  183 |   __IO uint32_t SR;     /*!< ADC status register,                         Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:183:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'SR'
+  183 |   __IO uint32_t SR;     /*!< ADC status register,                         Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:207:3: error: unknown type name '__IO'
+  207 |   __IO uint32_t CSR;    /*!< ADC Common status register,                  Address offset: ADC1 base address + 0x300 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:207:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CSR'
+  207 |   __IO uint32_t CSR;    /*!< ADC Common status register,                  Address offset: ADC1 base address + 0x300 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:220:3: error: unknown type name '__IO'
+  220 |   __IO uint32_t TIR;  /*!< CAN TX mailbox identifier register */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:220:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'TIR'
+  220 |   __IO uint32_t TIR;  /*!< CAN TX mailbox identifier register */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:232:3: error: unknown type name '__IO'
+  232 |   __IO uint32_t RIR;  /*!< CAN receive FIFO mailbox identifier register */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:232:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'RIR'
+  232 |   __IO uint32_t RIR;  /*!< CAN receive FIFO mailbox identifier register */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:244:3: error: unknown type name '__IO'
+  244 |   __IO uint32_t FR1; /*!< CAN Filter bank register 1 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:244:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'FR1'
+  244 |   __IO uint32_t FR1; /*!< CAN Filter bank register 1 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:254:3: error: unknown type name '__IO'
+  254 |   __IO uint32_t              MCR;                 /*!< CAN master control register,         Address offset: 0x00          */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:254:30: error: expected ':', ',', ';', '}' or '__attribute__' before 'MCR'
+  254 |   __IO uint32_t              MCR;                 /*!< CAN master control register,         Address offset: 0x00          */
+      |                              ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:285:3: error: unknown type name '__IO'
+  285 |   __IO uint32_t CR;           /*!< CEC control register,              Address offset:0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:285:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  285 |   __IO uint32_t CR;           /*!< CEC control register,              Address offset:0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:298:3: error: unknown type name '__IO'
+  298 |   __IO uint32_t DR;         /*!< CRC Data register,             Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:298:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'DR'
+  298 |   __IO uint32_t DR;         /*!< CRC Data register,             Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:311:3: error: unknown type name '__IO'
+  311 |   __IO uint32_t CR;       /*!< DAC control register,                                    Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:311:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  311 |   __IO uint32_t CR;       /*!< DAC control register,                                    Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:333:3: error: unknown type name '__IO'
+  333 |   __IO uint32_t IDCODE;  /*!< MCU device ID code,               Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:333:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'IDCODE'
+  333 |   __IO uint32_t IDCODE;  /*!< MCU device ID code,               Address offset: 0x00 */
+      |                 ^~~~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:345:3: error: unknown type name '__IO'
+  345 |   __IO uint32_t CR;       /*!< DCMI control register 1,                       Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:345:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  345 |   __IO uint32_t CR;       /*!< DCMI control register 1,                       Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:364:3: error: unknown type name '__IO'
+  364 |   __IO uint32_t CR;     /*!< DMA stream x configuration register      */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:364:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  364 |   __IO uint32_t CR;     /*!< DMA stream x configuration register      */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:374:3: error: unknown type name '__IO'
+  374 |   __IO uint32_t LISR;   /*!< DMA low interrupt status register,      Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:374:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'LISR'
+  374 |   __IO uint32_t LISR;   /*!< DMA low interrupt status register,      Address offset: 0x00 */
+      |                 ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:386:3: error: unknown type name '__IO'
+  386 |   __IO uint32_t IMR;    /*!< EXTI Interrupt mask register,            Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:386:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'IMR'
+  386 |   __IO uint32_t IMR;    /*!< EXTI Interrupt mask register,            Address offset: 0x00 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:400:3: error: unknown type name '__IO'
+  400 |   __IO uint32_t ACR;      /*!< FLASH access control register,   Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:400:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'ACR'
+  400 |   __IO uint32_t ACR;      /*!< FLASH access control register,   Address offset: 0x00 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:415:3: error: unknown type name '__IO'
+  415 |   __IO uint32_t BTCR[8];    /*!< NOR/PSRAM chip-select control register(BCR) and chip-select timing register(BTR), Address offset: 0x00-1C */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:415:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'BTCR'
+  415 |   __IO uint32_t BTCR[8];    /*!< NOR/PSRAM chip-select control register(BCR) and chip-select timing register(BTR), Address offset: 0x00-1C */
+      |                 ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:424:3: error: unknown type name '__IO'
+  424 |   __IO uint32_t BWTR[7];    /*!< NOR/PSRAM write timing registers, Address offset: 0x104-0x11C */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:424:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'BWTR'
+  424 |   __IO uint32_t BWTR[7];    /*!< NOR/PSRAM write timing registers, Address offset: 0x104-0x11C */
+      |                 ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:433:3: error: unknown type name '__IO'
+  433 |   __IO uint32_t PCR;       /*!< NAND Flash control register,                       Address offset: 0x80 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:433:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'PCR'
+  433 |   __IO uint32_t PCR;       /*!< NAND Flash control register,                       Address offset: 0x80 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:447:3: error: unknown type name '__IO'
+  447 |   __IO uint32_t SDCR[2];        /*!< SDRAM Control registers ,      Address offset: 0x140-0x144  */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:447:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'SDCR'
+  447 |   __IO uint32_t SDCR[2];        /*!< SDRAM Control registers ,      Address offset: 0x140-0x144  */
+      |                 ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:460:3: error: unknown type name '__IO'
+  460 |   __IO uint32_t MODER;    /*!< GPIO port mode register,               Address offset: 0x00      */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:460:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'MODER'
+  460 |   __IO uint32_t MODER;    /*!< GPIO port mode register,               Address offset: 0x00      */
+      |                 ^~~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:477:3: error: unknown type name '__IO'
+  477 |   __IO uint32_t MEMRMP;       /*!< SYSCFG memory remap register,                      Address offset: 0x00      */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:477:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'MEMRMP'
+  477 |   __IO uint32_t MEMRMP;       /*!< SYSCFG memory remap register,                      Address offset: 0x00      */
+      |                 ^~~~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:492:3: error: unknown type name '__IO'
+  492 |   __IO uint32_t CR1;        /*!< I2C Control register 1,     Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:492:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR1'
+  492 |   __IO uint32_t CR1;        /*!< I2C Control register 1,     Address offset: 0x00 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:510:3: error: unknown type name '__IO'
+  510 |   __IO uint32_t CR1;         /*!< FMPI2C Control register 1,            Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:510:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR1'
+  510 |   __IO uint32_t CR1;         /*!< FMPI2C Control register 1,            Address offset: 0x00 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:529:3: error: unknown type name '__IO'
+  529 |   __IO uint32_t KR;   /*!< IWDG Key register,       Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:529:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'KR'
+  529 |   __IO uint32_t KR;   /*!< IWDG Key register,       Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:542:3: error: unknown type name '__IO'
+  542 |   __IO uint32_t CR;   /*!< PWR power control register,        Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:542:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  542 |   __IO uint32_t CR;   /*!< PWR power control register,        Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:552:3: error: unknown type name '__IO'
+  552 |   __IO uint32_t CR;            /*!< RCC clock control register,                                  Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:552:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  552 |   __IO uint32_t CR;            /*!< RCC clock control register,                                  Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:594:3: error: unknown type name '__IO'
+  594 |   __IO uint32_t TR;      /*!< RTC time register,                                        Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:594:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'TR'
+  594 |   __IO uint32_t TR;      /*!< RTC time register,                                        Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:642:3: error: unknown type name '__IO'
+  642 |   __IO uint32_t GCR;      /*!< SAI global configuration register,        Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:642:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'GCR'
+  642 |   __IO uint32_t GCR;      /*!< SAI global configuration register,        Address offset: 0x00 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:647:3: error: unknown type name '__IO'
+  647 |   __IO uint32_t CR1;      /*!< SAI block x configuration register 1,     Address offset: 0x04 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:647:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR1'
+  647 |   __IO uint32_t CR1;      /*!< SAI block x configuration register 1,     Address offset: 0x04 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:663:3: error: unknown type name '__IO'
+  663 |   __IO uint32_t POWER;                 /*!< SDIO power control register,    Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:663:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'POWER'
+  663 |   __IO uint32_t POWER;                 /*!< SDIO power control register,    Address offset: 0x00 */
+      |                 ^~~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:691:3: error: unknown type name '__IO'
+  691 |   __IO uint32_t CR1;        /*!< SPI control register 1 (not used in I2S mode),      Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:691:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR1'
+  691 |   __IO uint32_t CR1;        /*!< SPI control register 1 (not used in I2S mode),      Address offset: 0x00 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:708:3: error: unknown type name '__IO'
+  708 |   __IO uint32_t CR;       /*!< QUADSPI Control register,                           Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:708:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  708 |   __IO uint32_t CR;       /*!< QUADSPI Control register,                           Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:729:3: error: unknown type name '__IO'
+  729 |   __IO uint32_t   CR;           /*!< Control register,                   Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:729:19: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  729 |   __IO uint32_t   CR;           /*!< Control register,                   Address offset: 0x00 */
+      |                   ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:747:3: error: unknown type name '__IO'
+  747 |   __IO uint32_t CR1;         /*!< TIM control register 1,              Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:747:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR1'
+  747 |   __IO uint32_t CR1;         /*!< TIM control register 1,              Address offset: 0x00 */
+      |                 ^~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:776:3: error: unknown type name '__IO'
+  776 |   __IO uint32_t SR;         /*!< USART Status register,                   Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:776:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'SR'
+  776 |   __IO uint32_t SR;         /*!< USART Status register,                   Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:791:3: error: unknown type name '__IO'
+  791 |   __IO uint32_t CR;   /*!< WWDG Control register,       Address offset: 0x00 */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:791:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'CR'
+  791 |   __IO uint32_t CR;   /*!< WWDG Control register,       Address offset: 0x00 */
+      |                 ^~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:800:3: error: unknown type name '__IO'
+  800 |   __IO uint32_t GOTGCTL;              /*!< USB_OTG Control and Status Register          000h */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:800:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'GOTGCTL'
+  800 |   __IO uint32_t GOTGCTL;              /*!< USB_OTG Control and Status Register          000h */
+      |                 ^~~~~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:831:3: error: unknown type name '__IO'
+  831 |   __IO uint32_t DCFG;            /*!< dev Configuration Register   800h */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:831:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'DCFG'
+  831 |   __IO uint32_t DCFG;            /*!< dev Configuration Register   800h */
+      |                 ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:858:3: error: unknown type name '__IO'
+  858 |   __IO uint32_t DIEPCTL;           /*!< dev IN Endpoint Control Reg    900h + (ep_num * 20h) + 00h */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:858:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'DIEPCTL'
+  858 |   __IO uint32_t DIEPCTL;           /*!< dev IN Endpoint Control Reg    900h + (ep_num * 20h) + 00h */
+      |                 ^~~~~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:873:3: error: unknown type name '__IO'
+  873 |   __IO uint32_t DOEPCTL;       /*!< dev OUT Endpoint Control Reg           B00h + (ep_num * 20h) + 00h */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:873:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'DOEPCTL'
+  873 |   __IO uint32_t DOEPCTL;       /*!< dev OUT Endpoint Control Reg           B00h + (ep_num * 20h) + 00h */
+      |                 ^~~~~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:887:3: error: unknown type name '__IO'
+  887 |   __IO uint32_t HCFG;             /*!< Host Configuration Register          400h */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:887:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'HCFG'
+  887 |   __IO uint32_t HCFG;             /*!< Host Configuration Register          400h */
+      |                 ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:901:3: error: unknown type name '__IO'
+  901 |   __IO uint32_t HCCHAR;           /*!< Host Channel Characteristics Register    500h */
+      |   ^~~~
+C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Acquisition_System/Drivers/Device/ST/STM32F4xx/Include/stm32f446xx.h:901:17: error: expected ':', ',', ';', '}' or '__attribute__' before 'HCCHAR'
+  901 |   __IO uint32_t HCCHAR;           /*!< Host Channel Characteristics Register    500h */
+      |                 ^~~~~~
+../Src/system_stm32f4xx.c: In function 'SystemInit':
+../Src/system_stm32f4xx.c:18:5: error: 'SCB' undeclared (first use in this function)
+   18 |     SCB->CPACR |= (0xFUL << 20);
+      |     ^~~
+../Src/system_stm32f4xx.c:18:5: note: each undeclared identifier is reported only once for each function it appears in
+../Src/system_stm32f4xx.c:21:8: error: 'RCC_TypeDef' has no member named 'CR'
+   21 |     RCC->CR |= RCC_CR_HSION;
+      |        ^~
+../Src/system_stm32f4xx.c:22:8: error: 'RCC_TypeDef' has no member named 'CFGR'
+   22 |     RCC->CFGR = 0;
+      |        ^~
+../Src/system_stm32f4xx.c:23:8: error: 'RCC_TypeDef' has no member named 'CR'
+   23 |     RCC->CR &= ~(RCC_CR_HSEON | RCC_CR_CSSON | RCC_CR_PLLON);
+      |        ^~
+../Src/system_stm32f4xx.c:24:8: error: 'RCC_TypeDef' has no member named 'PLLCFGR'
+   24 |     RCC->PLLCFGR = 0x24003010;
+      |        ^~
+../Src/system_stm32f4xx.c:25:8: error: 'RCC_TypeDef' has no member named 'CR'
+   25 |     RCC->CR &= ~(RCC_CR_HSEBYP);
+      |        ^~
+../Src/system_stm32f4xx.c:26:8: error: 'RCC_TypeDef' has no member named 'CIR'
+   26 |     RCC->CIR = 0;
+      |        ^~
+make: *** [Src/subdir.mk:28: Src/system_stm32f4xx.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+
+01:19:37 Build Failed. 274 errors, 1 warnings. (took 557ms)
+

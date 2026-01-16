@@ -57,7 +57,7 @@ void ITM_SendChar(uint8_t ch)
  //Write to ITM stimulus port0
  ITM_STIMULUS_PORT0 = ch;
 }
- ITM_SendChar(*ptr++)
+
 
 
 

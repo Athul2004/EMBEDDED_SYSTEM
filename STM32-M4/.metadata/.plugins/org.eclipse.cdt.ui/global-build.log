@@ -1,68 +1,221 @@
-20:46:58 **** Incremental Build of configuration Debug for project SAMPLE_1 ****
+23:18:55 **** Incremental Build of configuration Debug for project Energy_aquisition_system ****
 make -j8 all 
-arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f446retx.d" -MT"Startup/startup_stm32f446retx.o" --specs=nano.specs -mfloat-abi=hard -mthumb -o "Startup/startup_stm32f446retx.o" "../Startup/startup_stm32f446retx.s"
-arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=hard -mthumb -o "Src/main.o"
-arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfloat-abi=hard -mthumb -o "Src/syscalls.o"
-arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfloat-abi=hard -mthumb -o "Src/sysmem.o"
-../Src/main.c:22:4: warning: #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use." [-Wcpp]
-   22 |   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
-      |    ^~~~~~~
-arm-none-eabi-gcc -o "SAMPLE_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\KICHU\Desktop\EMBEDDED_SYSTEM_D\EMBEDDED_SYSTEM\STM32-M4\SAMPLE_1\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SAMPLE_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: SAMPLE_1.elf
- 
-arm-none-eabi-size  SAMPLE_1.elf 
-arm-none-eabi-objdump -h -S SAMPLE_1.elf  > "SAMPLE_1.list"
+arm-none-eabi-size  Energy_aquisition_system.elf 
    text	   data	    bss	    dec	    hex	filename
-    712	      0	   1568	   2280	    8e8	SAMPLE_1.elf
+   6976	     80	   1952	   9008	   2330	Energy_aquisition_system.elf
 Finished building: default.size.stdout
  
-Finished building: SAMPLE_1.list
- 
-20:47:06 **** Incremental Build of configuration Debug for project SAMPLE_1 ****
+23:19:06 **** Incremental Build of configuration Debug for project Energy_aquisition_system ****
 make -j8 all 
-arm-none-eabi-size  SAMPLE_1.elf 
+arm-none-eabi-size  Energy_aquisition_system.elf 
    text	   data	    bss	    dec	    hex	filename
-    712	      0	   1568	   2280	    8e8	SAMPLE_1.elf
+   6976	     80	   1952	   9008	   2330	Energy_aquisition_system.elf
 Finished building: default.size.stdout
  
-21:02:31 **** Incremental Build of configuration Debug for project SAMPLE_1 ****
+23:20:24 **** Incremental Build of configuration Debug for project Energy_aquisition_system ****
 make -j8 all 
-arm-none-eabi-size  SAMPLE_1.elf 
+arm-none-eabi-size  Energy_aquisition_system.elf 
    text	   data	    bss	    dec	    hex	filename
-    712	      0	   1568	   2280	    8e8	SAMPLE_1.elf
+   6976	     80	   1952	   9008	   2330	Energy_aquisition_system.elf
 Finished building: default.size.stdout
  
-21:02:43 **** Incremental Build of configuration Debug for project SAMPLE_1 ****
+23:22:32 **** Incremental Build of configuration Debug for project Energy_aquisition_system ****
 make -j8 all 
-arm-none-eabi-size  SAMPLE_1.elf 
-   text	   data	    bss	    dec	    hex	filename
-    712	      0	   1568	   2280	    8e8	SAMPLE_1.elf
-Finished building: default.size.stdout
- 
-21:03:30 **** Incremental Build of configuration Debug for project SAMPLE_1 ****
-make -j8 all 
-arm-none-eabi-size  SAMPLE_1.elf 
-   text	   data	    bss	    dec	    hex	filename
-    712	      0	   1568	   2280	    8e8	SAMPLE_1.elf
-Finished building: default.size.stdout
- 
-17:08:15 **** Build of configuration Debug for project STM32_drivers ****
-make -j8 all 
-arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f446retx.d" -MT"Startup/startup_stm32f446retx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Startup/startup_stm32f446retx.o" "../Startup/startup_stm32f446retx.s"
 arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
-arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/syscalls.o"
-arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/sysmem.o"
-../Src/main.c:22:4: warning: #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use." [-Wcpp]
-   22 |   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
-      |    ^~~~~~~
-arm-none-eabi-gcc -o "STM32_drivers.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\KICHU\Desktop\EMBEDDED_SYSTEM_D\EMBEDDED_SYSTEM\STM32-M4\STM32_drivers\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_drivers.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STM32_drivers.elf
+../Src/main.c: In function 'Calculate_RMS':
+../Src/main.c:114:14: warning: unused variable 'samples' [-Wunused-variable]
+  114 |     uint32_t samples = 0;
+      |              ^~~~~~~
+arm-none-eabi-gcc -o "Energy_aquisition_system.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\KICHU\Desktop\EMBEDDED_SYSTEM_D\EMBEDDED_SYSTEM\STM32-M4\Energy_aquisition_system\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Energy_aquisition_system.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Energy_aquisition_system.elf
  
-arm-none-eabi-size  STM32_drivers.elf 
-arm-none-eabi-objdump -h -S STM32_drivers.elf  > "STM32_drivers.list"
+arm-none-eabi-size  Energy_aquisition_system.elf 
+arm-none-eabi-objdump -h -S Energy_aquisition_system.elf  > "Energy_aquisition_system.list"
    text	   data	    bss	    dec	    hex	filename
-    712	      0	   1568	   2280	    8e8	STM32_drivers.elf
+   4488	     80	   1880	   6448	   1930	Energy_aquisition_system.elf
 Finished building: default.size.stdout
  
-Finished building: STM32_drivers.list
+Finished building: Energy_aquisition_system.list
+ 
+23:44:43 **** Incremental Build of configuration Debug for project Energy_aquisition_system ****
+make -j8 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "Energy_aquisition_system.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\KICHU\Desktop\EMBEDDED_SYSTEM_D\EMBEDDED_SYSTEM\STM32-M4\Energy_aquisition_system\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Energy_aquisition_system.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Energy_aquisition_system.elf
+ 
+arm-none-eabi-size  Energy_aquisition_system.elf 
+arm-none-eabi-objdump -h -S Energy_aquisition_system.elf  > "Energy_aquisition_system.list"
+   text	   data	    bss	    dec	    hex	filename
+   1616	      0	   1568	   3184	    c70	Energy_aquisition_system.elf
+Finished building: default.size.stdout
+ 
+Finished building: Energy_aquisition_system.list
+ 
+23:57:23 **** Incremental Build of configuration Debug for project Energy_aquisition_system ****
+make -j8 all 
+arm-none-eabi-size  Energy_aquisition_system.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1616	      0	   1568	   3184	    c70	Energy_aquisition_system.elf
+Finished building: default.size.stdout
+ 
+00:43:12 **** Incremental Build of configuration Debug for project Energy_aquisition_system ****
+make -j8 all 
+arm-none-eabi-size  Energy_aquisition_system.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1616	      0	   1568	   3184	    c70	Energy_aquisition_system.elf
+Finished building: default.size.stdout
+ 
+00:46:05 **** Incremental Build of configuration Debug for project Energy_aquisition_system ****
+make -j8 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "Energy_aquisition_system.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\KICHU\Desktop\EMBEDDED_SYSTEM_D\EMBEDDED_SYSTEM\STM32-M4\Energy_aquisition_system\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Energy_aquisition_system.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Energy_aquisition_system.elf
+ 
+arm-none-eabi-size  Energy_aquisition_system.elf 
+arm-none-eabi-objdump -h -S Energy_aquisition_system.elf  > "Energy_aquisition_system.list"
+   text	   data	    bss	    dec	    hex	filename
+   5616	     84	   1876	   7576	   1d98	Energy_aquisition_system.elf
+Finished building: default.size.stdout
+ 
+Finished building: Energy_aquisition_system.list
+ 
+00:46:29 **** Incremental Build of configuration Debug for project Energy_aquisition_system ****
+make -j8 all 
+arm-none-eabi-size  Energy_aquisition_system.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5616	     84	   1876	   7576	   1d98	Energy_aquisition_system.elf
+Finished building: default.size.stdout
+ 
+00:46:52 **** Incremental Build of configuration Debug for project Energy_aquisition_system ****
+make -j8 all 
+arm-none-eabi-size  Energy_aquisition_system.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5616	     84	   1876	   7576	   1d98	Energy_aquisition_system.elf
+Finished building: default.size.stdout
+ 
+00:47:21 **** Incremental Build of configuration Debug for project Energy_aquisition_system ****
+make -j8 all 
+arm-none-eabi-size  Energy_aquisition_system.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5616	     84	   1876	   7576	   1d98	Energy_aquisition_system.elf
+Finished building: default.size.stdout
+ 
+00:47:52 **** Incremental Build of configuration Debug for project Energy_aquisition_system ****
+make -j8 all 
+arm-none-eabi-size  Energy_aquisition_system.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5616	     84	   1876	   7576	   1d98	Energy_aquisition_system.elf
+Finished building: default.size.stdout
+ 
+01:01:56 **** Incremental Build of configuration Debug for project Energy_aquisition_system ****
+make -j8 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "Energy_aquisition_system.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\KICHU\Desktop\EMBEDDED_SYSTEM_D\EMBEDDED_SYSTEM\STM32-M4\Energy_aquisition_system\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Energy_aquisition_system.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Energy_aquisition_system.elf
+ 
+arm-none-eabi-size  Energy_aquisition_system.elf 
+arm-none-eabi-objdump -h -S Energy_aquisition_system.elf  > "Energy_aquisition_system.list"
+   text	   data	    bss	    dec	    hex	filename
+   5616	     84	   1876	   7576	   1d98	Energy_aquisition_system.elf
+Finished building: default.size.stdout
+ 
+Finished building: Energy_aquisition_system.list
+ 
+01:06:28 **** Incremental Build of configuration Debug for project Energy_aquisition_system ****
+make -j8 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "Energy_aquisition_system.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\KICHU\Desktop\EMBEDDED_SYSTEM_D\EMBEDDED_SYSTEM\STM32-M4\Energy_aquisition_system\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Energy_aquisition_system.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Energy_aquisition_system.elf
+ 
+arm-none-eabi-size  Energy_aquisition_system.elf 
+arm-none-eabi-objdump -h -S Energy_aquisition_system.elf  > "Energy_aquisition_system.list"
+   text	   data	    bss	    dec	    hex	filename
+   5660	     84	   1876	   7620	   1dc4	Energy_aquisition_system.elf
+Finished building: default.size.stdout
+ 
+Finished building: Energy_aquisition_system.list
+ 
+01:08:19 **** Incremental Build of configuration Debug for project Energy_aquisition_system ****
+make -j8 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "Energy_aquisition_system.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\KICHU\Desktop\EMBEDDED_SYSTEM_D\EMBEDDED_SYSTEM\STM32-M4\Energy_aquisition_system\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Energy_aquisition_system.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Energy_aquisition_system.elf
+ 
+arm-none-eabi-size  Energy_aquisition_system.elf 
+arm-none-eabi-objdump -h -S Energy_aquisition_system.elf  > "Energy_aquisition_system.list"
+   text	   data	    bss	    dec	    hex	filename
+   5660	     84	   1876	   7620	   1dc4	Energy_aquisition_system.elf
+Finished building: default.size.stdout
+ 
+Finished building: Energy_aquisition_system.list
+ 
+01:18:31 **** Incremental Build of configuration Debug for project Energy_aquisition_system ****
+make -j8 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "Energy_aquisition_system.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\KICHU\Desktop\EMBEDDED_SYSTEM_D\EMBEDDED_SYSTEM\STM32-M4\Energy_aquisition_system\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Energy_aquisition_system.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Energy_aquisition_system.elf
+ 
+arm-none-eabi-size  Energy_aquisition_system.elf 
+arm-none-eabi-objdump -h -S Energy_aquisition_system.elf  > "Energy_aquisition_system.list"
+   text	   data	    bss	    dec	    hex	filename
+   5660	     84	   1876	   7620	   1dc4	Energy_aquisition_system.elf
+Finished building: default.size.stdout
+ 
+Finished building: Energy_aquisition_system.list
+ 
+01:19:24 **** Incremental Build of configuration Debug for project Energy_aquisition_system ****
+make -j8 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "Energy_aquisition_system.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\KICHU\Desktop\EMBEDDED_SYSTEM_D\EMBEDDED_SYSTEM\STM32-M4\Energy_aquisition_system\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Energy_aquisition_system.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Energy_aquisition_system.elf
+ 
+arm-none-eabi-size  Energy_aquisition_system.elf 
+arm-none-eabi-objdump -h -S Energy_aquisition_system.elf  > "Energy_aquisition_system.list"
+   text	   data	    bss	    dec	    hex	filename
+   5660	     84	   1876	   7620	   1dc4	Energy_aquisition_system.elf
+Finished building: default.size.stdout
+ 
+Finished building: Energy_aquisition_system.list
+ 
+01:20:07 **** Incremental Build of configuration Debug for project Energy_aquisition_system ****
+make -j8 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "Energy_aquisition_system.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\KICHU\Desktop\EMBEDDED_SYSTEM_D\EMBEDDED_SYSTEM\STM32-M4\Energy_aquisition_system\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Energy_aquisition_system.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Energy_aquisition_system.elf
+ 
+arm-none-eabi-size  Energy_aquisition_system.elf 
+arm-none-eabi-objdump -h -S Energy_aquisition_system.elf  > "Energy_aquisition_system.list"
+   text	   data	    bss	    dec	    hex	filename
+   5660	     84	   1876	   7620	   1dc4	Energy_aquisition_system.elf
+Finished building: default.size.stdout
+ 
+Finished building: Energy_aquisition_system.list
+ 
+01:21:57 **** Incremental Build of configuration Debug for project Energy_aquisition_system ****
+make -j8 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "Energy_aquisition_system.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\KICHU\Desktop\EMBEDDED_SYSTEM_D\EMBEDDED_SYSTEM\STM32-M4\Energy_aquisition_system\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Energy_aquisition_system.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Energy_aquisition_system.elf
+ 
+arm-none-eabi-size  Energy_aquisition_system.elf 
+arm-none-eabi-objdump -h -S Energy_aquisition_system.elf  > "Energy_aquisition_system.list"
+   text	   data	    bss	    dec	    hex	filename
+   5660	     84	   1876	   7620	   1dc4	Energy_aquisition_system.elf
+Finished building: default.size.stdout
+ 
+Finished building: Energy_aquisition_system.list
+ 
+01:23:20 **** Incremental Build of configuration Debug for project Energy_aquisition_system ****
+make -j8 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "Energy_aquisition_system.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\KICHU\Desktop\EMBEDDED_SYSTEM_D\EMBEDDED_SYSTEM\STM32-M4\Energy_aquisition_system\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Energy_aquisition_system.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Energy_aquisition_system.elf
+ 
+arm-none-eabi-size  Energy_aquisition_system.elf 
+arm-none-eabi-objdump -h -S Energy_aquisition_system.elf  > "Energy_aquisition_system.list"
+   text	   data	    bss	    dec	    hex	filename
+   5660	     84	   1876	   7620	   1dc4	Energy_aquisition_system.elf
+Finished building: default.size.stdout
+ 
+Finished building: Energy_aquisition_system.list
  

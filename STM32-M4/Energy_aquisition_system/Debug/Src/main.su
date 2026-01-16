@@ -1,0 +1,7 @@
+../Src/main.c:41:5:main	24	static
+../Src/main.c:75:7:Calculate_RMS	4072	static
+../Src/main.c:111:6:ADC1_Init	16	static
+../Src/main.c:126:10:ADC1_Read	4	static
+../Src/main.c:139:6:UART2_Init	4	static
+../Src/main.c:158:6:UART2_SendString	16	static
+../Src/main.c:165:6:UART2_SendNumber	32	static
