@@ -1,0 +1,133 @@
+#include "device.h"
+#include <math.h> // Standard math library
+
+// --- BUFFERS ---
+#define BUF_LEN 128
+uint32_t adc_buffer[BUF_LEN];
+uint8_t OLED_Buffer[1024];
+uint8_t cursor_x=0, cursor_y=0;
+
+// --- CALIBRATION ---
+#define V_OFFSET 2065
+#define I_OFFSET 2045
+float32_t v_cal = 0.727;
+float32_t i_cal = 0.0136;
+
+// --- FONT ---
+const uint8_t Font[][5] = {
+    {0x3E,0x51,0x49,0x45,0x3E}, {0x00,0x42,0x7F,0x40,0x00}, {0x42,0x61,0x51,0x49,0x46},
+    {0x21,0x41,0x45,0x4B,0x31}, {0x18,0x14,0x12,0x7F,0x10}, {0x27,0x45,0x45,0x45,0x39},
+    {0x3C,0x4A,0x49,0x49,0x30}, {0x01,0x71,0x09,0x05,0x03}, {0x36,0x49,0x49,0x49,0x36},
+    {0x06,0x49,0x49,0x29,0x1E}, {0x00,0x00,0x00,0x00,0x00}, {0x1F,0x20,0x40,0x20,0x1F},
+    {0x7E,0x09,0x09,0x09,0x7E}, {0x3F,0x40,0x38,0x40,0x3F}, {0x7F,0x09,0x09,0x09,0x06},
+    {0x7F,0x09,0x09,0x09,0x01}, {0x00,0x60,0x60,0x00,0x00}, {0x22,0x14,0x08,0x14,0x22},
+    {0x36,0x36,0x00,0x00,0x00}
+};
+
+// --- DRIVER FUNCTIONS ---
+void UART_Init() {
+    RCC->AHB1ENR |= (1<<0); RCC->APB1ENR |= (1<<17);
+    GPIOA->MODER |= (2<<4)|(2<<6); GPIOA->AFRL |= (7<<8)|(7<<12);
+    USART2->BRR = 0x008B; USART2->CR1 = (1<<13)|(1<<3)|(1<<2);
+}
+void UART_Send(char *s) { while(*s) { while(!(USART2->SR & (1<<7))); USART2->DR=*s++; } }
+void UART_Num(int n) { char b[12]; int i=0; if(n==0){UART_Send("0");return;} while(n>0){b[i++]=(n%10)+'0';n/=10;} while(--i>=0){while(!(USART2->SR&(1<<7)));USART2->DR=b[i];} }
+
+void I2C_Init() {
+    RCC->AHB1ENR |= (1<<1); RCC->APB1ENR |= (1<<21);
+    GPIOB->MODER |= (2<<16)|(2<<18); GPIOB->OTYPER |= (1<<8)|(1<<9); GPIOB->OSPEEDR |= (3<<16)|(3<<18);
+    GPIOB->AFRH |= (4<<0)|(4<<4);
+    I2C1->CR1 |= (1<<15); I2C1->CR1 &= ~(1<<15); I2C1->CR2=16; I2C1->CCR=80; I2C1->TRISE=17; I2C1->CR1|=1;
+}
+void I2C_WriteMulti(uint8_t addr, uint8_t reg, uint8_t* d, uint16_t c) {
+    while(I2C1->SR2&2); I2C1->CR1|=(1<<8); while(!(I2C1->SR1&1)); I2C1->DR=addr; while(!(I2C1->SR1&2)); (void)I2C1->SR2;
+    while(!(I2C1->SR1&(1<<7))); I2C1->DR=reg;
+    for(uint16_t i=0; i<c; i++) { while(!(I2C1->SR1&(1<<7))); I2C1->DR=d[i]; }
+    while(!(I2C1->SR1&(1<<7))); while(I2C1->SR1&(1<<2)); I2C1->CR1|=(1<<9);
+}
+void I2C_Write(uint8_t addr, uint8_t reg, uint8_t data) { uint8_t t=data; I2C_WriteMulti(addr, reg, &t, 1); }
+
+void OLED_Init() {
+    uint8_t cmds[]={0xAE,0x20,0x10,0xB0,0xC8,0x00,0x10,0x40,0x81,0xFF,0xA1,0xA6,0xA8,0x3F,0xA4,0xD3,0x00,0xD5,0xF0,0xD9,0x22,0xDA,0x12,0xDB,0x20,0x8D,0x14,0xAF};
+    for(int i=0; i<sizeof(cmds); i++) I2C_Write(SSD1306_ADDR, 0x00, cmds[i]);
+}
+void OLED_Clear() { for(int i=0; i<1024; i++) OLED_Buffer[i]=0; }
+void OLED_Update() {
+    for(int i=0; i<8; i++) { I2C_Write(SSD1306_ADDR,0x00,0xB0+i); I2C_Write(SSD1306_ADDR,0x00,0x00); I2C_Write(SSD1306_ADDR,0x00,0x10); I2C_WriteMulti(SSD1306_ADDR,0x40,&OLED_Buffer[128*i],128); }
+}
+void OLED_Char(char c) {
+    int idx=10; if(c>='0'&&c<='9')idx=c-'0'; else if(c=='V')idx=11; else if(c=='A')idx=12; else if(c=='W')idx=13; else if(c=='P')idx=14; else if(c=='F')idx=15; else if(c=='.')idx=16; else if(c=='%')idx=17; else if(c==':')idx=18;
+    for(int i=0;i<5;i++) OLED_Buffer[cursor_x++ + (cursor_y*128)] = Font[idx][i]; cursor_x++;
+}
+void OLED_Str(char* s) { while(*s) OLED_Char(*s++); }
+void OLED_Num(int n) { char b[10]; int i=0; if(n==0){OLED_Str("0");return;} while(n>0){b[i++]=(n%10)+'0';n/=10;} while(--i>=0)OLED_Char(b[i]); }
+void OLED_Set(uint8_t x, uint8_t y) { cursor_x=x; cursor_y=y; }
+
+void HW_Init() {
+    // FPU
+    FPU_CPACR |= (0xF << 20);
+
+    // ADC/DMA/TIM
+    RCC->APB2ENR|=(1<<8); RCC->AHB1ENR|=(1<<22); RCC->APB1ENR|=(1<<0);
+    GPIOA->MODER|=(3<<0)|(3<<2);
+    ADC1->CR1|=(1<<8); ADC1->CR2|=(1<<8)|(1<<9)|(6<<24)|(1<<28);
+    ADC1->SQR1=(1<<20); ADC1->SQR3=(0<<0)|(1<<5); ADC1->CR2|=1;
+
+    DMA2_Stream0->CR&=~1; while(DMA2_Stream0->CR&1);
+    DMA2_Stream0->PAR=(uint32_t)&ADC1->DR; DMA2_Stream0->M0AR=(uint32_t)adc_buffer; DMA2_Stream0->NDTR=BUF_LEN;
+    DMA2_Stream0->CR=(0<<25)|(2<<13)|(2<<11)|(1<<10)|(1<<8)|1;
+
+    TIM2->PSC=0; TIM2->ARR=1999; TIM2->CR2|=(2<<4); TIM2->CR1|=1;
+}
+
+// --- MAIN LOOP ---
+int main(void) {
+    UART_Init();
+    I2C_Init();
+    OLED_Init();
+    HW_Init();
+
+    OLED_Clear(); OLED_Set(10,2); OLED_Str("SYSTEM OK"); OLED_Update();
+    UART_Send("OK\r\n");
+
+    static uint64_t acc_v=0, acc_i=0;
+    static float32_t acc_p=0;
+    static int samples=0;
+
+    while(1) {
+        if(DMA2->LISR & (1<<4)) { DMA2->LIFCR|=(1<<4);
+            for(int n=0; n<BUF_LEN/2; n+=2) {
+                int32_t v = (int32_t)adc_buffer[n]-V_OFFSET;
+                int32_t i = (int32_t)adc_buffer[n+1]-I_OFFSET;
+                acc_v+=(v*v); acc_i+=(i*i); acc_p+=(float32_t)(-(v*i)); samples++;
+            }
+        }
+        if(DMA2->LISR & (1<<5)) { DMA2->LIFCR|=(1<<5);
+            for(int n=BUF_LEN/2; n<BUF_LEN; n+=2) {
+                int32_t v = (int32_t)adc_buffer[n]-V_OFFSET;
+                int32_t i = (int32_t)adc_buffer[n+1]-I_OFFSET;
+                acc_v+=(v*v); acc_i+=(i*i); acc_p+=(float32_t)(-(v*i)); samples++;
+            }
+        }
+
+        if(samples >= 8000) {
+            float32_t v_rms = sqrtf((float32_t)acc_v/samples) * v_cal;
+            float32_t i_rms = sqrtf((float32_t)acc_i/samples) * i_cal;
+            float32_t power = (acc_p/samples) * v_cal * i_cal;
+            if(v_rms<15) v_rms=0; if(i_rms<0.05) i_rms=0; if(power<0) power=-power;
+
+            float32_t app = v_rms*i_rms;
+            float32_t pf = (app>0.5) ? (power/app)*100 : 0; if(pf>100) pf=100;
+
+            OLED_Clear();
+            OLED_Set(0,0); OLED_Str("V:"); OLED_Num((int)v_rms);
+            OLED_Set(0,2); OLED_Str("A:"); OLED_Num((int)i_rms);
+            OLED_Set(0,4); OLED_Str("W:"); OLED_Num((int)power);
+            OLED_Set(0,6); OLED_Str("PF:"); OLED_Num((int)pf);
+            OLED_Update();
+
+            UART_Send("U\r\n");
+            acc_v=0; acc_i=0; acc_p=0; samples=0;
+        }
+    }
+}

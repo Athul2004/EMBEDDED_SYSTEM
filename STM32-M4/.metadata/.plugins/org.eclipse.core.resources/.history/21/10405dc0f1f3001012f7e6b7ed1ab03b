@@ -1,0 +1,19 @@
+#include "adc.h"
+
+void ADC1_Init(void) {
+    ADC1_EN();
+    GPIOA_EN(); // Enable GPIOA clock
+
+    // PA0, PA1 as Analog Mode (11)
+    GPIOA->MODER |= (3 << 0) | (3 << 2);
+
+    // Scan Mode, DMA Continuous, Trigger by TIM2 (Rising Edge)
+    ADC1->CR1 |= (1 << 8);
+    ADC1->CR2 |= (1 << 8) | (1 << 9) | (6 << 24) | (1 << 28);
+
+    // Sequence: 2 Conversions (L=1), Rank1=CH0, Rank2=CH1
+    ADC1->SQR1 = (1 << 20);
+    ADC1->SQR3 = (0 << 0) | (1 << 5);
+
+    ADC1->CR2 |= 1; // ADON
+}

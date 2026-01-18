@@ -1,0 +1,28 @@
+/*
+ * tim.c
+ *
+ *  Created on: 18-Jan-2026
+ *      Author: KICHU
+ */
+
+
+#include "tim.h"
+
+void TIM2_Init(void) {
+    // 1. Enable TIM2 Clock
+    TIM2_EN();
+
+    // 2. Configure for 8kHz Sampling
+    // System Freq = 16MHz. Target = 8kHz.
+    // 16,000,000 / 2000 = 8000.
+    TIM2->PSC = 0;          // Prescaler = 1
+    TIM2->ARR = 1999;       // Auto-reload = 2000 ticks
+
+    // 3. Configure Trigger Output (TRGO)
+    // MMS = 010 (Update Event is used as TRGO)
+    TIM2->CR2 &= ~(7 << 4); // Clear
+    TIM2->CR2 |= (2 << 4);  // Set
+
+    // 4. Start Timer
+    TIM2->CR1 |= 1;         // CEN
+}

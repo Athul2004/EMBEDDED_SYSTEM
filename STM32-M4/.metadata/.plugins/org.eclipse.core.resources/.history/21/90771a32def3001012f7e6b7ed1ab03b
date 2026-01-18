@@ -1,0 +1,168 @@
+#include "stm32_f446xx.h"
+#include <math.h>
+#include <stdint.h>
+
+// --- DEFINES ---
+#define SCB_CPACR (*((volatile uint32_t*)0xE000ED88))
+
+// --- CALIBRATION: VOLTAGE (PA0) ---
+#define V_OFFSET 2065
+float v_calibration = 0.727;
+
+// --- CALIBRATION: CURRENT (PA1) ---
+// Your 3.3V power setup center point
+// 1. Adjust the Offset slightly (Try 2047 if 2045 is jumping)
+#define I_OFFSET 2047
+
+// 2. Increase the noise threshold (Move from 25.0 up to 60.0)
+// This will "kill" that fake 2.3A reading
+// Lower the threshold slightly from 60 to 45
+float i_noise_threshold = 45.0;
+
+// Increase the calibration factor slightly
+float i_calibration = 0.520;
+
+// --- PROTOTYPES ---
+void UART2_Init(void);
+void UART2_SendString(char *string);
+void UART2_SendNumber(int number);
+void ADC1_Init(void);
+uint32_t ADC1_Read_Channel(uint8_t channel);
+float Get_Voltage(void);
+float Get_Current(void);
+
+int main(void) {
+    // 1. Enable FPU for floating point math
+    SCB_CPACR |= (0xF << 20);
+
+    // 2. Initialize Hardware
+    UART2_Init();
+    ADC1_Init();
+
+    UART2_SendString("--- Energy Monitor: Sensitive Mode ---\r\n");
+
+    while(1) {
+        // 3. Perform Measurements
+        float volts = Get_Voltage();
+        float amps  = Get_Current();
+        float watts = volts * amps;
+
+        // 4. Print Results
+        UART2_SendString("V: ");
+        UART2_SendNumber((int)volts);
+        UART2_SendString("V | ");
+
+        // Manual float printing for Amps
+        int i_int = (int)amps;
+        int i_dec = (int)((amps - i_int) * 100);
+        UART2_SendString("I: ");
+        UART2_SendNumber(i_int);
+        UART2_SendString(".");
+        if(i_dec < 10) UART2_SendString("0");
+        UART2_SendNumber(i_dec);
+        UART2_SendString("A | ");
+
+        UART2_SendString("P: ");
+        UART2_SendNumber((int)watts);
+        UART2_SendString("W\r\n");
+
+        // Delay ~800ms
+        for(volatile uint32_t i = 0; i < 1500000; i++);
+    }
+}
+
+// --- MEASUREMENT LOGIC ---
+
+float Get_Voltage(void) {
+    uint32_t samples = 1000;
+    uint64_t sum_squares = 0;
+
+    for (int i = 0; i < samples; i++) {
+        int raw = ADC1_Read_Channel(0); // PA0
+        int val = raw - V_OFFSET;
+        sum_squares += (int64_t)val * val;
+        for(volatile int k=0; k<30; k++);
+    }
+
+    float rms = sqrtf((float)sum_squares / (float)samples);
+    float volts = rms * v_calibration;
+
+    if (volts < 10.0) return 0.0;
+    return volts;
+}
+
+float Get_Current(void) {
+    uint32_t samples = 2500; // More samples for small load stability
+    uint64_t sum_squares = 0;
+
+    for (int i = 0; i < samples; i++) {
+        int raw = ADC1_Read_Channel(1); // PA1
+        int val = raw - I_OFFSET;
+        sum_squares += (int64_t)val * val;
+        // Faster sampling to catch SMPS spikes
+        for(volatile int k=0; k<10; k++);
+    }
+
+    float rms_raw = sqrtf((float)sum_squares / (float)samples);
+
+    /* --- DEBUG MODE ---
+       Uncomment the lines below to see the 'Noise Level' in PuTTY.
+       If it shows a number > 30 when laptop is ON, it is working! */
+    // UART2_SendString("[RawRMS: "); UART2_SendNumber((int)rms_raw); UART2_SendString("] ");
+
+    // If signal is below noise floor, force to 0.00
+    if (rms_raw < i_noise_threshold) {
+        return 0.0;
+    }
+
+    // Subtract noise floor and scale
+    float amps = (rms_raw - i_noise_threshold) * i_calibration;
+
+    return amps;
+}
+
+// --- BARE METAL DRIVERS ---
+
+void ADC1_Init(void) {
+    ADC1_EN();
+    GPIOA_CLK_EN();
+    GPIOA->MODER |= (3 << 0) | (3 << 2);
+    ADC1->CR2 |= (1 << 0);
+    for(volatile int i=0; i<1000; i++);
+}
+
+uint32_t ADC1_Read_Channel(uint8_t channel) {
+    ADC1->SQR3 = channel;
+    ADC1->CR2 |= (1 << 30);
+    while (!(ADC1->SR & (1 << 1)));
+    return ADC1->DR;
+}
+
+void UART2_Init(void) {
+    GPIOA_CLK_EN();
+    USART2_EN();
+    GPIOA->MODER &= ~(3 << 4); GPIOA->MODER |= (2 << 4);
+    GPIOA->MODER &= ~(3 << 6); GPIOA->MODER |= (2 << 6);
+    GPIOA->AFRL |= (0x7 << 8) | (0x7 << 12);
+    USART2->BRR = 0x0683; // 9600 Baud
+    USART2->CR1 = (1 << 13) | (1 << 3) | (1 << 2);
+}
+
+void UART2_SendString(char *string) {
+    while(*string) {
+        while (!(USART2->SR & (1 << 7)));
+        USART2->DR = (*string++ & 0xFF);
+    }
+}
+
+void UART2_SendNumber(int number) {
+    char buf[12];
+    int i = 0;
+    if (number == 0) { UART2_SendString("0"); return; }
+    if (number < 0) { UART2_SendString("-"); number = -number; }
+    while (number > 0) { buf[i++] = (number % 10) + '0'; number /= 10; }
+    while (--i >= 0) {
+        while (!(USART2->SR & (1 << 7)));
+        USART2->DR = buf[i];
+    }
+}

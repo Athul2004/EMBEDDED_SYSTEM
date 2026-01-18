@@ -1,0 +1,147 @@
+#include "stm32_f446xx.h"
+#include <math.h>
+#include <stdint.h>
+#include <stdio.h>
+
+// --- DEFINES ---
+#define SCB_CPACR (*((volatile uint32_t*)0xE000ED88))
+
+// --- CALIBRATION SETTINGS ---
+// 1. ZERO POINT: The raw ADC value when NO Current is flowing.
+// ACS712 outputs 2.5V at 0A. On STM32 (3.3V ref), 2.5V = ~3103 raw.
+// If your output says "0.20 A" with no load, adjust this number!
+#define I_OFFSET 3103
+
+// 2. SENSITIVITY: Adjust this to match your specific ACS712 module (5A, 20A, or 30A)
+// Start with 0.045. If reading is too low, increase it.
+float i_calibration = 0.045;
+
+// --- PROTOTYPES ---
+void UART2_Init(void);
+void UART2_SendString(char *string);
+void UART2_SendNumber(int number);
+void ADC1_Init(void);
+uint32_t ADC1_Read_PA1(void);
+float Get_Current_RMS(void);
+
+int main(void) {
+    // 1. ENABLE FPU
+    SCB_CPACR |= (0xF << 20);
+
+    // 2. Init
+    UART2_Init();
+    ADC1_Init();
+
+    UART2_SendString("ACS712 Current Sensor Test...\r\n");
+
+    while(1) {
+        // Measure
+        float amps = Get_Current_RMS();
+
+        // Print Format: "Raw: 3103 | Current: 0.45 A"
+        // We will print Raw inside the RMS function for debugging, or just print Amps here.
+
+        int i_int = (int)amps;
+        int i_dec = (int)((amps - i_int) * 100);
+
+        UART2_SendString("Current: ");
+        UART2_SendNumber(i_int);
+        UART2_SendString(".");
+        if(i_dec < 10) UART2_SendString("0");
+        UART2_SendNumber(i_dec);
+        UART2_SendString(" A");
+
+        // Add a newline
+        UART2_SendString("\r\n");
+
+        // Delay 0.5 sec
+        for(volatile uint32_t i = 0; i < 1000000; i++);
+    }
+}
+
+// --- MEASUREMENT LOGIC ---
+
+float Get_Current_RMS(void) {
+    uint32_t samples = 1000;
+    uint64_t sum_squares = 0;
+    uint32_t raw_sum = 0; // For debugging zero point
+
+    for (int i = 0; i < samples; i++) {
+        uint32_t raw = ADC1_Read_PA1();
+        raw_sum += raw; // Track average raw value
+
+        int value = raw - I_OFFSET;
+        sum_squares += (value * value);
+        for(volatile int k=0; k<50; k++);
+    }
+
+    // DEBUG: Print the Average Raw Value periodically
+    // This tells you exactly what to set I_OFFSET to!
+    // (Uncomment the lines below if you need to find your Zero Point)
+    /*
+    uint32_t avg_raw = raw_sum / samples;
+    UART2_SendString("[Raw Avg: ");
+    UART2_SendNumber(avg_raw);
+    UART2_SendString("] ");
+    */
+
+    float rms = sqrt(sum_squares / samples);
+    float amps = rms * i_calibration;
+
+    // Noise Gate: Ignore tiny noise (< 0.03 A)
+    if (amps < 0.03) return 0.0;
+
+    return amps;
+}
+
+// --- DRIVERS ---
+
+void ADC1_Init(void) {
+    ADC1_EN();
+    GPIOA_CLK_EN();
+
+    // Configure PA1 as Analog Mode (11)
+    // GPIOA MODER Pin 1 is bits [3:2]
+    GPIOA->MODER |= (3 << 2);
+
+    ADC1->CR2 |= (1 << 0); // Enable ADC
+    for(volatile int i=0; i<1000; i++);
+}
+
+uint32_t ADC1_Read_PA1(void) {
+    // Select Channel 1 (PA1)
+    ADC1->SQR3 &= ~(0x1F); // Clear
+    ADC1->SQR3 |= 1;       // Set Channel 1
+
+    ADC1->CR2 |= (1 << 30); // Start
+    while (!(ADC1->SR & (1 << 1))); // Wait
+    return ADC1->DR;
+}
+
+void UART2_Init(void) {
+    GPIOA_CLK_EN();
+    USART2_EN();
+    GPIOA->MODER &= ~(3 << 4); GPIOA->MODER |= (2 << 4);
+    GPIOA->MODER &= ~(3 << 6); GPIOA->MODER |= (2 << 6);
+    GPIOA->AFRL &= ~(0xF << 8); GPIOA->AFRL |= (0x7 << 8);
+    USART2->BRR = 0x0683;
+    USART2->CR1 = (1 << 13) | (1 << 3) | (1 << 2);
+}
+
+void UART2_SendString(char *string) {
+    while(*string) {
+        while (!(USART2->SR & (1 << 7)));
+        USART2->DR = (*string++ & 0xFF);
+    }
+}
+
+void UART2_SendNumber(int number) {
+    char buf[12];
+    int i = 0;
+    if (number == 0) { UART2_SendString("0"); return; }
+    while (number > 0) { buf[i++] = (number % 10) + '0'; number /= 10; }
+    while (--i >= 0) {
+        while (!(USART2->SR & (1 << 7)));
+        USART2->DR = buf[i];
+    }
+}

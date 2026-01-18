@@ -1,0 +1,43 @@
+/*
+ * dma.h
+ *
+ *  Created on: 18-Jan-2026
+ *      Author: KICHU
+ */
+
+#ifndef DMA_H_
+#define DMA_H_
+
+#include "stm32_f446xx.h"
+
+// DMA2 Base Address
+#define DMA2_BASEADDR 0x40026400U
+
+// DMA Stream Register Structure
+typedef struct
+{
+    volatile uint32_t CR;     // Control register: Configures Channel, Priority, Direction
+    volatile uint32_t NDTR;   // Number of data register: How many samples to collect
+    volatile uint32_t PAR;    // Peripheral address register: Points to ADC1->DR
+    volatile uint32_t M0AR;   // Memory 0 address register: Points to your array in RAM
+    volatile uint32_t M1AR;   // Memory 1 address register: Used for double-buffering
+    volatile uint32_t FCR;    // FIFO control register
+} DMA_Stream_RegDef_t;
+
+// DMA Global Register Structure (Status & Interrupts)
+typedef struct
+{
+    volatile uint32_t LISR;   // Low interrupt status register
+    volatile uint32_t HISR;   // High interrupt status register
+    volatile uint32_t LIFCR;  // Low interrupt flag clear register
+    volatile uint32_t HIFCR;  // High interrupt flag clear register
+} DMA_RegDef_t;
+
+// Pointers
+#define DMA2           ((DMA_RegDef_t*)DMA2_BASEADDR)
+#define DMA2_Stream0   ((DMA_Stream_RegDef_t*)(DMA2_BASEADDR + 0x10))
+
+// Clock Enable Macro (DMA2 is on AHB1 Bus, Bit 22)
+#define DMA2_CLK_EN()  (RCC->AHB1ENR |= (1 << 22))
+
+#endif /* DMA_H_ */

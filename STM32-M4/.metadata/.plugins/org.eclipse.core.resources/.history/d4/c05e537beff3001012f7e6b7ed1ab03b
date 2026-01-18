@@ -1,0 +1,25 @@
+/*
+ * dma.h
+ *
+ *  Created on: 18-Jan-2026
+ *      Author: KICHU
+ */
+
+#include "dma.h"
+#include "adc.h" // Required to access ADC1->DR
+
+void DMA2_Init(uint32_t* buffer, uint16_t size) {
+    DMA2_CLK_EN(); // Now defined in dma.h
+
+    DMA2_Stream0->CR &= ~1;
+    while(DMA2_Stream0->CR & 1);
+
+    // Connect to ADC1
+    DMA2_Stream0->PAR = (uint32_t)&ADC1->DR;
+    DMA2_Stream0->M0AR = (uint32_t)buffer;
+    DMA2_Stream0->NDTR = size;
+
+    // Configure Stream
+    DMA2_Stream0->CR = (0 << 25) | (2 << 13) | (2 << 11) | (1 << 10) | (1 << 8);
+    DMA2_Stream0->CR |= 1;
+}

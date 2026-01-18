@@ -1,0 +1,142 @@
+#include "stm32_f446xx.h"
+#include "adc.h"
+#include "uart.h"
+#include "dma.h"
+#include "tim.h"
+#include <math.h>
+
+// --- CONFIGURATION ---
+#define BUF_LEN 128         // Interleaved buffer: [V0, I0, V1, I1 ... V63, I63]
+uint32_t adc_buffer[BUF_LEN];
+
+// Calibration constants (Adjusted for your 3.3V system)
+#define V_OFFSET 2065
+#define I_OFFSET 2045
+float v_cal = 0.727;
+float i_cal = 0.021;
+
+// --- PROTOTYPES ---
+void Hardware_Init(void);
+void Process_Energy_Data(void);
+void UART2_SendString(char *string);
+void UART2_SendNumber(int number);
+
+// --- MAIN ---
+int main(void) {
+    // 1. Enable FPU for DSP Math
+    SCB_CPACR |= (0xF << 20);
+
+    // 2. Initialize Hardware Drivers
+    Hardware_Init();
+
+    UART2_SendString("--- Energy Engine: 8kHz DMA Professional Mode ---\r\n");
+
+    while(1) {
+        // 3. Process the latest buffer of waveform data
+        Process_Energy_Data();
+
+        // 4. Update display delay (roughly 500ms)
+        for(volatile int d = 0; d < 2000000; d++);
+    }
+}
+
+// --- DSP ENGINE LOGIC ---
+void Process_Energy_Data(void) {
+    float sum_v_sq = 0, sum_i_sq = 0, sum_p_inst = 0;
+    int pairs = BUF_LEN / 2;
+
+    for(int n = 0; n < BUF_LEN; n += 2) {
+        // Extracting data from the circular DMA buffer
+        float v = (float)adc_buffer[n] - V_OFFSET;
+        float i = (float)adc_buffer[n+1] - I_OFFSET;
+
+        sum_v_sq += v * v;
+        sum_i_sq += i * i;
+        sum_p_inst += v * i; // V * I at the exact same microsecond
+    }
+
+    // RMS Calculations
+    float v_rms = sqrtf(sum_v_sq / pairs) * v_cal;
+    float i_rms = sqrtf(sum_i_sq / pairs) * i_cal;
+
+    // Power Parameters
+    float active_power = (sum_p_inst / pairs) * v_cal * i_cal;
+    float apparent_power = v_rms * i_rms;
+    float pf = (apparent_power > 0.1) ? (active_power / apparent_power) : 0;
+
+    // --- FORMATTED OUTPUT ---
+    UART2_SendString("V_RMS: "); UART2_SendNumber((int)v_rms);
+    UART2_SendString("V | I_RMS: ");
+    UART2_SendNumber((int)i_rms); UART2_SendString(".");
+    UART2_SendNumber((int)((i_rms - (int)i_rms) * 100));
+    UART2_SendString("A | P_Active: "); UART2_SendNumber((int)active_power);
+    UART2_SendString("W | PF: ");
+    UART2_SendNumber((int)(pf * 100));
+    UART2_SendString("%\r\n");
+}
+
+// --- HARDWARE CONFIGURATION ---
+void Hardware_Init(void) {
+    // Enable peripheral clocks
+    GPIOA_CLK_EN();
+    ADC1_EN();
+    USART2_EN();      // Fixed from previous build error
+    DMA2_CLK_EN();
+    TIM2_EN();
+
+    // 1. GPIO Configuration (PA0=V_in, PA1=I_in, PA2=UART_TX)
+    GPIOA->MODER |= (3 << 0) | (3 << 2);      // PA0, PA1 as Analog
+    GPIOA->MODER &= ~(3 << 4); GPIOA->MODER |= (2 << 4); // PA2 as AF
+    GPIOA->AFRL  |= (7 << 8);                 // AF7 for USART2
+
+    // 2. USART2 Config (9600 Baud @ 16MHz)
+    USART2->BRR = 0x0683;
+    USART2->CR1 = (1 << 13) | (1 << 3);       // UE=1, TE=1
+
+    // 3. DMA2 Stream 0 Config (ADC1 is on Channel 0)
+    DMA2_Stream0->CR &= ~1;
+    while(DMA2_Stream0->CR & 1);
+    DMA2_Stream0->PAR = (uint32_t)&ADC1->DR;
+    DMA2_Stream0->M0AR = (uint32_t)adc_buffer;
+    DMA2_Stream0->NDTR = BUF_LEN;
+    // CR: CH0, PL=High, MSIZE=32bit, PSIZE=32bit, MINC=1, CIRC=1, DIR=P->M
+    DMA2_Stream0->CR = (0 << 25) | (2 << 16) | (2 << 13) | (2 << 11) | (1 << 10) | (1 << 8);
+    DMA2_Stream0->CR |= 1; // Start DMA
+
+    // 4. ADC1 Config (Scan Mode, Triggered by TIM2)
+    ADC1->CR1 |= (1 << 8);               // SCAN Mode
+    ADC1->CR2 |= (1 << 8) | (1 << 9);    // DMA enable + Continuous DMA
+    ADC1->CR2 |= (6 << 24) | (1 << 28);  // EXTEN=Rising Edge, EXTSEL=TIM2 TRGO
+    ADC1->SQR1 = (1 << 20);              // L=1 (2 conversions)
+    ADC1->SQR3 = (0 << 0) | (1 << 5);    // 1st: CH0, 2nd: CH1
+    ADC1->CR2 |= 1;                      // ADON
+
+    // 5. TIM2 Config (8kHz sampling trigger)
+    TIM2->PSC = 0;
+    TIM2->ARR = 1999;                    // 16MHz / 2000 = 8kHz
+    TIM2->CR2 |= (2 << 4);               // MMS = 010 (Update Event triggers TRGO)
+    TIM2->CR1 |= 1;                      // CEN=1 (Start Timer)
+}
+
+// --- DRIVER IMPLEMENTATIONS ---
+void UART2_SendString(char *string) {
+    while(*string) {
+        while (!(USART2->SR & (1 << 7))); // Wait for TXE
+        USART2->DR = (*string++ & 0xFF);
+    }
+}
+
+void UART2_SendNumber(int number) {
+    char buf[12];
+    int i = 0;
+    if (number == 0) { UART2_SendString("0"); return; }
+    if (number < 0) { UART2_SendString("-"); number = -number; }
+    while (number > 0) {
+        buf[i++] = (number % 10) + '0';
+        number /= 10;
+    }
+    while (--i >= 0) {
+        while (!(USART2->SR & (1 << 7)));
+        USART2->DR = buf[i];
+    }
+}

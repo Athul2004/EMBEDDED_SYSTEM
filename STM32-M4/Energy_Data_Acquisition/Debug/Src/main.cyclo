@@ -1,0 +1,15 @@
+../Src/main.c:141:5:main	3
+../Src/main.c:169:6:Accumulate_Data	23
+../Src/main.c:319:6:Hardware_Init	2
+../Src/main.c:359:6:UART2_SendString	3
+../Src/main.c:365:6:UART2_SendNumber	6
+../Src/main.c:374:6:I2C1_WriteMulti	9
+../Src/main.c:392:6:I2C1_Write	1
+../Src/main.c:399:6:SSD1306_Init	2
+../Src/main.c:404:6:SSD1306_Clear	1
+../Src/main.c:408:6:SSD1306_Update	2
+../Src/main.c:417:6:SSD1306_SetCursor	1
+../Src/main.c:422:6:SSD1306_DrawChar	5
+../Src/main.c:430:6:SSD1306_Print	2
+../Src/main.c:434:6:SSD1306_PrintNumber	4
+../Src/main.c:441:6:SSD1306_PrintCentered	3

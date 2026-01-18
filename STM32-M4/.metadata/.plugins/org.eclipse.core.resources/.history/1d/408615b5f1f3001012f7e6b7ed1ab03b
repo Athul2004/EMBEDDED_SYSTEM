@@ -1,0 +1,5 @@
+#ifndef ADC_H_
+#define ADC_H_
+#include "stm32_f446xx.h"
+void ADC1_Init(void);
+#endif

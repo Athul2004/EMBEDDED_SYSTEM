@@ -1,0 +1,112 @@
+#include "stm32_f446xx.h"
+#include "adc.h"
+#include "uart.h"
+#include "dma.h"
+#include "tim.h"
+#include <math.h>
+
+// --- CONFIGURATION ---
+#define BUF_LEN 128         // Interleaved buffer: [V0, I0, V1, I1 ... V63, I63]
+uint32_t adc_buffer[BUF_LEN];
+
+// Your previously tuned calibration constants
+#define V_OFFSET 2065
+#define I_OFFSET 2045
+float v_cal = 0.727;
+float i_cal = 0.021;
+
+// --- PROTOTYPES ---
+void Hardware_Init(void);
+void Process_Energy_Data(void);
+
+int main(void) {
+    // 1. Enable FPU for DSP Math
+    SCB_CPACR |= (0xF << 20);
+
+    // 2. Initialize Hardware Drivers
+    Hardware_Init();
+    UART2_SendString("DSP Energy Engine Started (8kHz DMA Mode)\r\n");
+
+    while(1) {
+        // 3. Extract Parameters from Buffer
+        Process_Energy_Data();
+
+        // 4. Update display every ~500ms
+        for(volatile int d=0; d<1000000; d++);
+    }
+}
+
+void Process_Energy_Data(void) {
+    float sum_v_sq = 0, sum_i_sq = 0, sum_p_inst = 0;
+    int pairs = BUF_LEN / 2;
+
+    for(int n = 0; n < BUF_LEN; n += 2) {
+        // Interleaved Extraction (ADC Scan Mode)
+        float v = (float)adc_buffer[n] - V_OFFSET;
+        float i = (float)adc_buffer[n+1] - I_OFFSET;
+
+        sum_v_sq += v * v;
+        sum_i_sq += i * i;
+        sum_p_inst += v * i; // Instantaneous Power
+    }
+
+    // RMS Calculations
+    float v_rms = sqrtf(sum_v_sq / pairs) * v_cal;
+    float i_rms = sqrtf(sum_i_sq / pairs) * i_cal;
+
+    // ADE9000 Style Parameters
+    float active_power = (sum_p_inst / pairs) * v_cal * i_cal; // Real Power (W)
+    float apparent_power = v_rms * i_rms;                      // Apparent Power (VA)
+    float pf = (apparent_power > 0.1) ? (active_power / apparent_power) : 0;
+
+    // --- UART OUTPUT ---
+    UART2_SendString("V: "); UART2_SendNumber((int)v_rms);
+    UART2_SendString("V | I: ");
+    UART2_SendNumber((int)i_rms); UART2_SendString(".");
+    UART2_SendNumber((int)((i_rms - (int)i_rms) * 100));
+    UART2_SendString("A | P: "); UART2_SendNumber((int)active_power);
+    UART2_SendString("W | PF: ");
+    UART2_SendNumber((int)(pf * 100)); // Print PF as percentage for simplicity
+    UART2_SendString("%\r\n");
+}
+
+void Hardware_Init(void) {
+    // Enable all required clocks
+    GPIOA_CLK_EN();
+    ADC1_EN();
+    UART2_EN();
+    DMA2_CLK_EN();
+    TIM2_EN();
+
+    // 1. Setup GPIO (PA0=V, PA1=I, PA2=TX)
+    GPIOA->MODER |= (3 << 0) | (3 << 2);      // PA0, PA1 Analog
+    GPIOA->MODER &= ~(3 << 4); GPIOA->MODER |= (2 << 4); // PA2 Alt Func
+    GPIOA->AFRL  |= (7 << 8);                 // AF7 for UART2
+
+    // 2. Setup UART (9600 Baud)
+    USART2->BRR = 0x0683;
+    USART2->CR1 = (1 << 13) | (1 << 3);
+
+    // 3. Setup DMA (DMA2, Stream 0, CH0 = ADC1)
+    DMA2_Stream0->CR &= ~1; // Disable for config
+    DMA2_Stream0->PAR = (uint32_t)&ADC1->DR;
+    DMA2_Stream0->M0AR = (uint32_t)adc_buffer;
+    DMA2_Stream0->NDTR = BUF_LEN;
+    // Circular mode, Memory Increment, 32-bit size, CH0
+    DMA2_Stream0->CR = (0 << 25) | (1 << 10) | (1 << 8) | (2 << 13) | (2 << 11);
+    DMA2_Stream0->CR |= 1; // Enable DMA
+
+    // 4. Setup ADC (Scan mode, DMA trigger, External Trigger from TIM2)
+    ADC1->CR1 |= (1 << 8);               // SCAN Mode
+    ADC1->CR2 |= (1 << 8) | (1 << 9);    // DMA + Continuous DMA
+    ADC1->CR2 |= (6 << 24) | (1 << 28);  // TIM2 TRGO Trigger on Rising Edge
+    ADC1->SQR1 = (1 << 20);              // 2 conversions in sequence
+    ADC1->SQR3 = (0 << 0) | (1 << 5);    // Seq: Ch0 then Ch1
+    ADC1->CR2 |= 1;                      // Power ON ADC
+
+    // 5. Setup Timer 2 (8kHz Metronome)
+    TIM2->PSC = 0;
+    TIM2->ARR = 1999;                    // 16MHz / 2000 = 8000Hz
+    TIM2->CR2 |= (2 << 4);               // MMS: Update event as TRGO
+    TIM2->CR1 |= 1;                      // Start Timer
+}

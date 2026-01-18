@@ -1,0 +1,97 @@
+#include <stdint.h> // <--- THIS WAS MISSING
+#include <math.h>
+#include "stm32_f446xx.h"
+#include "adc.h"
+#include "dma.h"
+#include "tim.h"
+#include "uart.h"
+#include "i2c.h"
+#include "ssd1306.h"
+
+#define BUF_LEN 128
+uint32_t adc_buffer[BUF_LEN];
+
+#define V_OFFSET 2065
+#define I_OFFSET 2045
+float v_cal = 0.727;
+float i_cal = 0.0136;
+
+void Accumulate_Data(int start);
+
+int main(void) {
+    SCB_CPACR |= (0xF << 20); // Enable FPU
+
+    // Init Drivers
+    UART2_Init();
+    I2C1_Init();
+    ADC1_Init();
+    DMA2_Init(adc_buffer, BUF_LEN);
+    TIM2_Init();
+
+    // Init Screen
+    SSD1306_Init();
+    SSD1306_Clear();
+    SSD1306_SetCursor(10, 2);
+    SSD1306_Print("ENERGY METER");
+    SSD1306_Update();
+
+    UART2_SendString("System Started\r\n");
+
+    while(1) {
+        // Check DMA Interrupt Flags on Global DMA2 Register (LISR)
+        if (DMA2->LISR & (1 << 4)) {      // TCIF0 (Half)
+            DMA2->LIFCR |= (1 << 4);
+            Accumulate_Data(0);
+        }
+        if (DMA2->LISR & (1 << 5)) {      // HTIF0 (Complete)
+            DMA2->LIFCR |= (1 << 5);
+            Accumulate_Data(BUF_LEN/2);
+        }
+    }
+}
+
+void Accumulate_Data(int start) {
+    static uint64_t acc_v_sq = 0, acc_i_sq = 0;
+    static float acc_p_inst = 0;
+    static int sample_count = 0;
+
+    int limit = start + (BUF_LEN / 2);
+
+    for(int n = start; n < limit; n += 2) {
+        int32_t v = (int32_t)adc_buffer[n] - V_OFFSET;
+        int32_t i = (int32_t)adc_buffer[n+1] - I_OFFSET;
+
+        acc_v_sq += (v * v);
+        acc_i_sq += (i * i);
+        acc_p_inst += (float)(-(v * i));
+        sample_count++;
+    }
+
+    if (sample_count >= 8000) {
+        float v_rms = sqrtf((float)acc_v_sq / sample_count) * v_cal;
+        float i_rms = sqrtf((float)acc_i_sq / sample_count) * i_cal;
+
+        if (v_rms < 15.0) v_rms = 0;
+        if (i_rms < 0.05) i_rms = 0;
+
+        float active_power = (acc_p_inst / sample_count) * v_cal * i_cal;
+        if (i_rms == 0) active_power = 0;
+        if (active_power < 0) active_power = -active_power;
+
+        float apparent_power = v_rms * i_rms;
+        float pf = (apparent_power > 0.5) ? ((active_power / apparent_power) * 100) : 0;
+        if (pf > 100) pf = 100;
+
+        // Display
+        SSD1306_Clear();
+        SSD1306_SetCursor(0, 0); SSD1306_Print("V: "); SSD1306_PrintNumber((int)v_rms);
+        SSD1306_SetCursor(0, 2); SSD1306_Print("A: "); SSD1306_PrintNumber((int)i_rms);
+        SSD1306_SetCursor(0, 4); SSD1306_Print("W: "); SSD1306_PrintNumber((int)active_power);
+        SSD1306_SetCursor(0, 6); SSD1306_Print("PF:"); SSD1306_PrintNumber((int)pf);
+        SSD1306_Update();
+
+        UART2_SendString("Update\r\n");
+
+        acc_v_sq = 0; acc_i_sq = 0; acc_p_inst = 0; sample_count = 0;
+    }
+}

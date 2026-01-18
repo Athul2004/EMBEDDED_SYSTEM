@@ -1,0 +1,5 @@
+#ifndef TIM_H_
+#define TIM_H_
+#include "stm32_f446xx.h"
+void TIM2_Init(void);
+#endif

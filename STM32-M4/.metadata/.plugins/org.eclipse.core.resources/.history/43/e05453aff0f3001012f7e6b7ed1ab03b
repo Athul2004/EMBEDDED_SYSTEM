@@ -1,0 +1,34 @@
+/*
+ * adc.c
+ *
+ *  Created on: 18-Jan-2026
+ *      Author: KICHU
+ */
+
+
+#include "adc.h"
+
+void ADC1_Init(void) {
+    // 1. Enable Clock for ADC1 and GPIOA
+    ADC1_EN();
+    // Note: GPIOA Clock is enabled in stm32_f446xx.h macros or main
+    RCC->AHB1ENR |= (1 << 0); // Ensure GPIOA is on
+
+    // 2. Configure PA0 and PA1 as Analog Mode
+    GPIOA->MODER |= (3 << 0) | (3 << 2);
+
+    // 3. Configure ADC Common Features
+    ADC1->CR1 |= (1 << 8);               // SCAN Mode Enable
+    ADC1->CR2 |= (1 << 8) | (1 << 9);    // DMA Enable + DMA Continuous Request
+
+    // 4. Trigger Configuration (Timer 2 TRGO - Rising Edge)
+    ADC1->CR2 |= (1 << 28);              // EXTEN = 01 (Rising Edge)
+    ADC1->CR2 |= (6 << 24);              // EXTSEL = 0110 (TIM2 TRGO)
+
+    // 5. Sequence Configuration (2 Conversions)
+    ADC1->SQR1 = (1 << 20);              // L = 1 (Length is 2 conversions)
+    ADC1->SQR3 = (0 << 0) | (1 << 5);    // Rank 1 = CH0, Rank 2 = CH1
+
+    // 6. Enable ADC
+    ADC1->CR2 |= 1;                      // ADON
+}

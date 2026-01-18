@@ -1,0 +1,139 @@
+#include "stm32_f446xx.h"
+#include <math.h>
+#include <stdint.h>
+
+// --- REGISTER DEFINITIONS ---
+#define SCB_CPACR (*((volatile uint32_t*)0xE000ED88))
+
+// --- CALIBRATION SETTINGS ---
+// Zero point center for 3.3V power (measured previously)
+#define I_OFFSET 2045
+
+// Noise floor threshold (Your static noise was 27, so 32 is a safe 'wall')
+float i_noise_threshold = 32.0;
+
+// Calibration factor (Calculated to show ~0.6A for your laptop signal)
+float i_calibration = 0.021;
+
+// --- PROTOTYPES ---
+void UART2_Init(void);
+void UART2_SendString(char *string);
+void UART2_SendNumber(int number);
+void ADC1_Init(void);
+uint32_t ADC1_Read_PA1(void);
+float Get_Current_Stable(void);
+
+int main(void) {
+    // 1. Enable Floating Point Unit (FPU)
+    SCB_CPACR |= (0xF << 20);
+
+    // 2. Initialize Peripherals
+    UART2_Init();
+    ADC1_Init();
+
+    UART2_SendString("ACS712 Stable Current Monitor Ready\r\n");
+
+    while(1) {
+        // 3. Measure Current with 4000 samples
+        float amps = Get_Current_Stable();
+
+        // 4. Manual Formatting for UART (e.g., 0.65 A)
+        int i_int = (int)amps;
+        int i_dec = (int)((amps - i_int) * 100);
+
+        UART2_SendString("Current: ");
+        UART2_SendNumber(i_int);
+        UART2_SendString(".");
+        if(i_dec < 10) UART2_SendString("0"); // Leading zero for decimal
+        UART2_SendNumber(i_dec);
+        UART2_SendString(" A\r\n");
+
+        // 5. Short delay for readability
+        for(volatile uint32_t i = 0; i < 1000000; i++);
+    }
+}
+
+// --- CURRENT CALCULATION LOGIC ---
+
+float Get_Current_Stable(void) {
+    uint32_t samples = 4000; // Increased samples to stabilize laptop 'pulses'
+    uint64_t sum_squares = 0;
+
+    for (int i = 0; i < samples; i++) {
+        uint32_t raw = ADC1_Read_PA1();
+
+        // Subtract center point (DC offset)
+        int32_t val = (int32_t)raw - I_OFFSET;
+
+        // Sum the squares
+        sum_squares += (int64_t)val * val;
+
+        // Very short delay to sample as much of the AC wave as possible
+        for(volatile int k=0; k<5; k++);
+    }
+
+    // 1. Calculate Root Mean Square of the raw ADC jitter
+    float rms_raw = sqrtf((float)sum_squares / (float)samples);
+
+    // 2. Apply Noise Gate (If it's under the 'wall', show 0.00A)
+    if (rms_raw < i_noise_threshold) {
+        return 0.0;
+    }
+
+    // 3. Subtract the noise floor and scale to real Amps
+    float amps = (rms_raw - i_noise_threshold) * i_calibration;
+
+    return amps;
+}
+
+// --- BARE METAL DRIVERS ---
+
+void ADC1_Init(void) {
+    ADC1_EN();          // Enable ADC1 clock
+    GPIOA_CLK_EN();     // Enable GPIOA clock
+
+    // Set PA1 to Analog Mode (Bits 3:2 = 11)
+    GPIOA->MODER |= (3 << 2);
+
+    ADC1->CR2 |= (1 << 0); // ADON: Power on ADC
+    for(volatile int i=0; i<1000; i++); // Internal warm-up
+}
+
+uint32_t ADC1_Read_PA1(void) {
+    ADC1->SQR3 = 1;         // Set channel 1 (PA1)
+    ADC1->CR2 |= (1 << 30); // Start conversion
+
+    while (!(ADC1->SR & (1 << 1))); // Wait for end of conversion
+    return ADC1->DR;
+}
+
+void UART2_Init(void) {
+    GPIOA_CLK_EN();
+    USART2_EN();
+
+    // PA2 (TX) and PA3 (RX) setup
+    GPIOA->MODER &= ~((3 << 4) | (3 << 6));
+    GPIOA->MODER |=  ((2 << 4) | (2 << 6)); // Alternate Function
+    GPIOA->AFRL  |=  ((7 << 8) | (7 << 12)); // AF7 (USART2)
+
+    USART2->BRR = 0x0683; // 9600 Baud @ 16MHz
+    USART2->CR1 = (1 << 13) | (1 << 3) | (1 << 2); // UE, TE, RE
+}
+
+void UART2_SendString(char *string) {
+    while(*string) {
+        while (!(USART2->SR & (1 << 7))); // Wait for TXE
+        USART2->DR = (*string++ & 0xFF);
+    }
+}
+
+void UART2_SendNumber(int number) {
+    char buf[12];
+    int i = 0;
+    if (number == 0) { UART2_SendString("0"); return; }
+    while (number > 0) { buf[i++] = (number % 10) + '0'; number /= 10; }
+    while (--i >= 0) {
+        while (!(USART2->SR & (1 << 7)));
+        USART2->DR = buf[i];
+    }
+}

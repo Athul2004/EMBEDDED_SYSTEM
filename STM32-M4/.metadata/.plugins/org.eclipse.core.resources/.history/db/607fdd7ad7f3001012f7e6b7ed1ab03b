@@ -1,0 +1,102 @@
+#include "stm32_f446xx.h"
+#include <stdint.h>
+
+// --- DEFINES ---
+#define SCB_CPACR (*((volatile uint32_t*)0xE000ED88))
+
+// --- PROTOTYPES ---
+void UART2_Init(void);
+void UART2_SendString(char *string);
+void UART2_SendNumber(int number);
+void ADC1_Init(void);
+uint32_t ADC1_Read_PA1(void);
+
+int main(void) {
+    SCB_CPACR |= (0xF << 20); // Enable FPU
+    UART2_Init();
+    ADC1_Init();
+
+    UART2_SendString("ACS712 Raw Debugger Started (PA1)...\r\n");
+
+    while(1) {
+        uint32_t min_val = 4096;
+        uint32_t max_val = 0;
+        uint64_t sum = 0;
+
+        // Capture 1000 samples from PA1
+        for(int i = 0; i < 1000; i++) {
+            uint32_t val = ADC1_Read_PA1();
+            if(val < min_val) min_val = val;
+            if(val > max_val) max_val = val;
+            sum += val;
+            for(volatile int k = 0; k < 100; k++);
+        }
+
+        uint32_t avg_val = sum / 1000;
+        uint32_t range = max_val - min_val;
+
+        // Print Stats
+        UART2_SendString("Avg: ");
+        UART2_SendNumber(avg_val);
+        UART2_SendString("  (Min: ");
+        UART2_SendNumber(min_val);
+        UART2_SendString(" Max: ");
+        UART2_SendNumber(max_val);
+        UART2_SendString(")\r\n");
+
+        // Diagnose
+        if (avg_val < 100) UART2_SendString("  -> ERROR: Sensor Disconnected / 0V\r\n");
+        else if (avg_val > 4000) UART2_SendString("  -> ERROR: Saturation / 3.3V\r\n");
+        else if (avg_val > 1900 && avg_val < 2200) UART2_SendString("  -> WARNING: Sensor on 3.3V? (Should be 5V)\r\n");
+        else if (avg_val > 3000 && avg_val < 3200) UART2_SendString("  -> OK: Correct 5V Zero Point\r\n");
+        else UART2_SendString("  -> UNKNOWN: Check Wiring\r\n");
+
+        for(volatile uint32_t i = 0; i < 2000000; i++);
+    }
+}
+
+// --- DRIVERS ---
+
+void ADC1_Init(void) {
+    ADC1_EN();
+    GPIOA_CLK_EN();
+    GPIOA->MODER |= (3 << 2); // PA1 Analog (Bits 3:2)
+    ADC1->CR2 |= (1 << 0);    // Enable ADC
+    for(volatile int i=0; i<1000; i++);
+}
+
+uint32_t ADC1_Read_PA1(void) {
+    ADC1->SQR3 &= ~(0x1F); // Clear Channel
+    ADC1->SQR3 |= 1;       // Select Channel 1 (PA1)
+    ADC1->CR2 |= (1 << 30); // Start
+    while (!(ADC1->SR & (1 << 1))); // Wait
+    return ADC1->DR;
+}
+
+void UART2_Init(void) {
+    GPIOA_CLK_EN();
+    USART2_EN();
+    GPIOA->MODER &= ~(3 << 4); GPIOA->MODER |= (2 << 4);
+    GPIOA->MODER &= ~(3 << 6); GPIOA->MODER |= (2 << 6);
+    GPIOA->AFRL &= ~(0xF << 8); GPIOA->AFRL |= (0x7 << 8);
+    USART2->BRR = 0x0683;
+    USART2->CR1 = (1 << 13) | (1 << 3) | (1 << 2);
+}
+
+void UART2_SendString(char *string) {
+    while(*string) {
+        while (!(USART2->SR & (1 << 7)));
+        USART2->DR = (*string++ & 0xFF);
+    }
+}
+
+void UART2_SendNumber(int number) {
+    char buf[12];
+    int i = 0;
+    if (number == 0) { UART2_SendString("0"); return; }
+    while (number > 0) { buf[i++] = (number % 10) + '0'; number /= 10; }
+    while (--i >= 0) {
+        while (!(USART2->SR & (1 << 7)));
+        USART2->DR = buf[i];
+    }
+}
