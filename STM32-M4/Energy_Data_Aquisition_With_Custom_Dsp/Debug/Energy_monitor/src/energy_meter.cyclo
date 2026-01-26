@@ -1,0 +1,4 @@
+../Energy_monitor/src/energy_meter.c:30:6:Hardware_Init	1
+../Energy_monitor/src/energy_meter.c:42:6:EnergyMeter_Init	1
+../Energy_monitor/src/energy_meter.c:54:6:EnergyMeter_Run	3
+../Energy_monitor/src/energy_meter.c:66:6:Accumulate_Data	23

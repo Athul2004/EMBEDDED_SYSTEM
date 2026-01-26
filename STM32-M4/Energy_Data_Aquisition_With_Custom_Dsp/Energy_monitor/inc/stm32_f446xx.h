@@ -1,0 +1,87 @@
+#ifndef STM32_F446XX_H_
+#define STM32_F446XX_H_
+
+// --- 1. TYPE DEFINITIONS ---
+// #include <stdint.h> // Commented out due to toolchain issues
+typedef unsigned char      uint8_t;
+typedef unsigned short     uint16_t;
+typedef unsigned int       uint32_t;
+typedef unsigned long long uint64_t;
+typedef signed long long   int64_t;
+typedef signed char        int8_t;
+typedef signed short       int16_t;
+typedef signed int         int32_t;
+typedef float              float32_t;
+
+// --- 2. HARDWARE ADDRESSES ---
+#define RCC_BASE      0x40023800U
+#define GPIOA_BASE    0x40020000U
+#define GPIOB_BASE    0x40020400U
+#define GPIOC_BASE    0x40020800U
+#define ADC1_BASE     0x40012000U
+#define DMA2_BASE     0x40026400U
+#define TIM2_BASE     0x40000000U
+#define I2C1_BASE     0x40005400U
+#define USART2_BASE   0x40004400U
+#define FPU_CPACR     (*((volatile uint32_t*)0xE000ED88))
+
+// --- 3. REGISTERS ---
+typedef struct { 
+    volatile uint32_t CR, PLLCFGR, CFGR, CIR, AHB1RSTR, AHB2RSTR, AHB3RSTR, RES0;
+    volatile uint32_t APB1RSTR, APB2RSTR, RES1[2], AHB1ENR, AHB2ENR, AHB3ENR;
+    volatile uint32_t RES2, APB1ENR, APB2ENR; 
+    volatile uint32_t BDCR, CSR, SSCGR, PLLI2SCFGR, PLLSAICFGR, DCKCFGR, CKGATENR, DCKCFGR2;
+} RCC_TypeDef;
+
+typedef struct { 
+    volatile uint32_t MODER, OTYPER, OSPEEDR, PUPDR, IDR, ODR, BSRR, LCKR, AFRL, AFRH; 
+} GPIO_TypeDef;
+
+typedef struct { 
+    volatile uint32_t CR, NDTR, PAR, M0AR, M1AR, FCR; 
+} DMA_Stream_TypeDef;
+
+typedef struct { 
+    volatile uint32_t LISR, HISR, LIFCR, HIFCR; 
+} DMA_TypeDef;
+
+typedef struct { 
+    volatile uint32_t SR, CR1, CR2, SMPR1, SMPR2, JOFR1, JOFR2, JOFR3, JOFR4;
+    volatile uint32_t HTR, LTR, SQR1, SQR2, SQR3, JSQR, JDR1, JDR2, JDR3, JDR4, DR; 
+} ADC_TypeDef;
+
+typedef struct { 
+    volatile uint32_t CR1, CR2, SMCR, DIER, SR, EGR, CCMR1, CCMR2, CCER, CNT, PSC, ARR; 
+} TIM_TypeDef;
+
+typedef struct { 
+    volatile uint32_t CR1, CR2, OAR1, OAR2, DR, SR1, SR2, CCR, TRISE; 
+} I2C_TypeDef;
+
+typedef struct { 
+    volatile uint32_t SR, DR, BRR, CR1, CR2, CR3, GTPR; 
+} USART_TypeDef;
+
+// --- 4. POINTERS ---
+#define RCC          ((RCC_TypeDef*)RCC_BASE)
+#define GPIOA        ((GPIO_TypeDef*)GPIOA_BASE)
+#define GPIOB        ((GPIO_TypeDef*)GPIOB_BASE)
+#define GPIOC        ((GPIO_TypeDef*)GPIOC_BASE)
+#define DMA2         ((DMA_TypeDef*)DMA2_BASE)
+#define DMA2_Stream0 ((DMA_Stream_TypeDef*)(DMA2_BASE + 0x10))
+#define ADC1         ((ADC_TypeDef*)ADC1_BASE)
+#define TIM2         ((TIM_TypeDef*)TIM2_BASE)
+#define I2C1         ((I2C_TypeDef*)I2C1_BASE)
+#define USART2       ((USART_TypeDef*)USART2_BASE)
+
+// --- 5. MACROS ---
+#define ENABLE_GPIOA() (RCC->AHB1ENR |= (1<<0))
+#define ENABLE_GPIOB() (RCC->AHB1ENR |= (1<<1))
+#define ENABLE_GPIOC() (RCC->AHB1ENR |= (1<<2))
+#define ENABLE_DMA2()  (RCC->AHB1ENR |= (1<<22))
+#define ENABLE_ADC1()  (RCC->APB2ENR |= (1<<8))
+#define ENABLE_TIM2()  (RCC->APB1ENR |= (1<<0))
+#define ENABLE_I2C1()  (RCC->APB1ENR |= (1<<21))
+#define ENABLE_UART2() (RCC->APB1ENR |= (1<<17))
+
+#endif

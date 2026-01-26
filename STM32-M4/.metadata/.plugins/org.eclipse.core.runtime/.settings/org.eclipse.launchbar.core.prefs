@@ -1,10 +1,14 @@
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
-configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:OLED_DISPLAY_I2C,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:LED_blink,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:LED_BLINK Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Energy_Data_Acquisition
+configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:OLED_DISPLAY_I2C,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:LED_blink,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:LED_BLINK Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Energy_Data_Aquisition_With_Custom_Dsp
 eclipse.preferences.version=1
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Energy_Aquisition_system/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Energy_Aquisition_system/activeLaunchTarget=null\:---
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Energy_Data_Acquisition/activeLaunchMode=debug
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Energy_Data_Acquisition/activeLaunchTarget=null\:---
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Energy_Data_Aquisition_With_Custom_Dsp/activeLaunchMode=debug
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Energy_Data_Aquisition_With_Custom_Dsp/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Energy_aquisition_system/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Energy_aquisition_system/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:LED_BLINK\ Debug/activeLaunchMode=debug

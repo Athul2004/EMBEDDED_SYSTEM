@@ -1,0 +1,8 @@
+../Energy_monitor/src/ssd1306.c:17:6:SSD1306_Init	2
+../Energy_monitor/src/ssd1306.c:26:6:SSD1306_Clear	1
+../Energy_monitor/src/ssd1306.c:30:6:SSD1306_Update	2
+../Energy_monitor/src/ssd1306.c:39:6:SSD1306_SetCursor	1
+../Energy_monitor/src/ssd1306.c:44:6:SSD1306_DrawChar	5
+../Energy_monitor/src/ssd1306.c:55:6:SSD1306_Print	2
+../Energy_monitor/src/ssd1306.c:61:6:SSD1306_PrintNumber	5
+../Energy_monitor/src/ssd1306.c:106:6:SSD1306_PrintCentered	3

@@ -1,16 +1,36 @@
-03:57:25 **** Incremental Build of configuration Debug for project Energy_aquisition_system ****
+20:46:12 **** Build of configuration Debug for project Energy_Aquisition_System ****
 make -j8 all 
-arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Aquisition_System/Energy_Monitor" -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f446retx.d" -MT"Startup/startup_stm32f446retx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Startup/startup_stm32f446retx.o" "../Startup/startup_stm32f446retx.s"
+arm-none-eabi-gcc "../Energy_Monitor/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Aquisition_System/Energy_Monitor/Inc" -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Aquisition_System/Energy_Monitor/Src" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Energy_Monitor/Src/main.d" -MT"Energy_Monitor/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Energy_Monitor/Src/main.o"
+arm-none-eabi-gcc "../Energy_Monitor/Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Aquisition_System/Energy_Monitor/Inc" -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Aquisition_System/Energy_Monitor/Src" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Energy_Monitor/Src/syscalls.d" -MT"Energy_Monitor/Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Energy_Monitor/Src/syscalls.o"
+arm-none-eabi-gcc "../Energy_Monitor/Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Aquisition_System/Energy_Monitor/Inc" -I"C:/Users/KICHU/Desktop/EMBEDDED_SYSTEM_D/EMBEDDED_SYSTEM/STM32-M4/Energy_Aquisition_System/Energy_Monitor/Src" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Energy_Monitor/Src/sysmem.d" -MT"Energy_Monitor/Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Energy_Monitor/Src/sysmem.o"
 In file included from C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.100.202509120712\tools\bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/stdint.h:14,
                  from C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.100.202509120712\tools\bin/../lib/gcc/arm-none-eabi/13.3.1/include/stdint.h:9,
-                 from ../Inc/device.h:8,
-                 from ../Src/main.c:1:
+                 from ../Energy_Monitor/Src/main.c:19:
 C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.100.202509120712\tools\bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/sys/_stdint.h:4:10: fatal error: stm32_f446xx.h: No such file or directory
     4 | #include "stm32_f446xx.h"
       |          ^~~~~~~~~~~~~~~~
 compilation terminated.
-make: *** [Src/subdir.mk:19: Src/main.o] Error 1
+In file included from C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.100.202509120712\tools\bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/stdint.h:14,
+                 from C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.100.202509120712\tools\bin/../lib/gcc/arm-none-eabi/13.3.1/include/stdint.h:9,
+                 from ../Energy_Monitor/Src/sysmem.c:25:
+C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.100.202509120712\tools\bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/sys/_stdint.h:4:10: fatal error: stm32_f446xx.h: No such file or directory
+    4 | #include "stm32_f446xx.h"
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Energy_Monitor/Src/subdir.mk:25: Energy_Monitor/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Energy_Monitor/Src/subdir.mk:25: Energy_Monitor/Src/sysmem.o] Error 1
+In file included from C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.100.202509120712\tools\bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/sys/types.h:46,
+                 from C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.100.202509120712\tools\bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/time.h:28,
+                 from C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.100.202509120712\tools\bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/sys/stat.h:9,
+                 from ../Energy_Monitor/Src/syscalls.c:24:
+C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.100.202509120712\tools\bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/include/sys/_stdint.h:4:10: fatal error: stm32_f446xx.h: No such file or directory
+    4 | #include "stm32_f446xx.h"
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Energy_Monitor/Src/subdir.mk:25: Energy_Monitor/Src/syscalls.o] Error 1
 "make -j8 all" terminated with exit code 2. Build might be incomplete.
 
-03:57:25 Build Failed. 2 errors, 0 warnings. (took 259ms)
+20:46:12 Build Failed. 7 errors, 0 warnings. (took 296ms)
 

@@ -1,0 +1,4 @@
+../Energy_monitor/src/uart_driver.c:10:6:UART2_Init	4	static
+../Energy_monitor/src/uart_driver.c:36:6:UART2_SendString	16	static
+../Energy_monitor/src/uart_driver.c:43:6:UART2_SendNumber	32	static
+../Energy_monitor/src/uart_driver.c:55:6:UART2_GetChar	4	static
