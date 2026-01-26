@@ -1,4 +1,4 @@
-../Energy_monitor/src/uart_driver.c:10:6:UART2_Init	1
-../Energy_monitor/src/uart_driver.c:36:6:UART2_SendString	3
-../Energy_monitor/src/uart_driver.c:43:6:UART2_SendNumber	6
-../Energy_monitor/src/uart_driver.c:55:6:UART2_GetChar	2
+../Energy_monitor/src/uart_driver.c:15:6:UART2_Init	1
+../Energy_monitor/src/uart_driver.c:52:6:UART2_SendString	3
+../Energy_monitor/src/uart_driver.c:68:6:UART2_SendNumber	6
+../Energy_monitor/src/uart_driver.c:104:6:UART2_GetChar	2

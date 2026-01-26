@@ -1,4 +1,4 @@
-../Energy_monitor/src/energy_meter.c:30:6:Hardware_Init	8	static
-../Energy_monitor/src/energy_meter.c:42:6:EnergyMeter_Init	8	static
-../Energy_monitor/src/energy_meter.c:54:6:EnergyMeter_Run	8	static
-../Energy_monitor/src/energy_meter.c:66:6:Accumulate_Data	112	static
+../Energy_monitor/src/energy_meter.c:31:6:Hardware_Init	8	static
+../Energy_monitor/src/energy_meter.c:45:6:EnergyMeter_Init	8	static
+../Energy_monitor/src/energy_meter.c:58:6:EnergyMeter_Run	8	static
+../Energy_monitor/src/energy_meter.c:76:6:Accumulate_Data	112	static

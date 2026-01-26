@@ -1,34 +1,29 @@
 /**
  * @file main.c
- * @brief Main entry point
+ * @brief Main entry point for the Energy Monitor Application
  */
 
-#include "stm32_f446xx.h"
-#include "energy_meter.h"
+#include "stm32_f446xx.h"       // Device Header
+#include "energy_meter.h"       // Application Logic Header
 
+/*
+ * @brief  Application Entry Point
+ * @retval int
+ */
 int main(void)
 {
-    // FPU Enable handled in Hardware_Init or here?
-    // Snippet had `FPU_CPACR |= (0xF << 20);` in main.
-    // energy_meter.c's Hardware_Init also has it. Redundant but harmless.
-    // I will call EnergyMeter_Init() which calls Hardware_Init().
-    
-    // Snippet Main:
-    /*
-    int main(void) {
-        FPU_CPACR |= (0xF << 20); // Enable FPU
-        Hardware_Init(); // This is effectively EnergyMeter_Init part 1
-        SSD1306_Init(); // Part 2
-        ... // Part 3
-    }
-    */
-    // My EnergyMeter_Init calls Hardware_Init -> SSD1306_Init -> Clear/Print.
-    // So main just needs to call EnergyMeter_Init then Loop.
-    
+    // Initialize the Energy Meter Application
+    // This internally initializes:
+    // - Hardware Clocks, GPIOs, ADC, DMA, Timers, UART, I2C
+    // - OLED Display
+    // - Application State
     EnergyMeter_Init();
 
+    // Infinite Loop
     while(1)
     {
+        // Run the main application task
+        // Checks for new data from DMA and processes it
         EnergyMeter_Run();
     }
 }
