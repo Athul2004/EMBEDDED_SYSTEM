@@ -4,10 +4,12 @@
  * MISRA Refactored
  */
 
-#include "fonts.h"
+#include "fonts.h"  // Include font header file
 
-// Font5x7 Data
-// 96 characters, 5 bytes each
+// Font5x7 Data Array
+// Contains pixel data for 96 ASCII characters starting from Space (32) to 'z'.
+// Each character is 5 bytes wide (5 columns, 7 rows typically fits in 8 bits).
+// 'const' keyword ensures this data is stored in Flash (Read-Only Memory).
 const uint8_t Font5x7[480] = {
     0x00, 0x00, 0x00, 0x00, 0x00, // Space (32)
     0x00, 0x00, 0x5F, 0x00, 0x00, // !

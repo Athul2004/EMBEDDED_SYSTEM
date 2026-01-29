@@ -1114,7 +1114,7 @@ LOAD C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
 LOAD C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.100.202509120712/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a
 LOAD C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.100.202509120712/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libgcc.a
 
-.debug_info     0x00000000     0x1e05
+.debug_info     0x00000000     0x1e20
  .debug_info    0x00000000      0x3ad ./Energy_monitor/src/adc_dma_driver.o
  .debug_info    0x000003ad      0x457 ./Energy_monitor/src/energy_meter.o
  .debug_info    0x00000804       0xa3 ./Energy_monitor/src/fonts.o
@@ -1122,10 +1122,10 @@ LOAD C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_info    0x00000f24       0x8c ./Energy_monitor/src/main.o
  .debug_info    0x00000fb0      0x358 ./Energy_monitor/src/ssd1306.o
  .debug_info    0x00001308      0x25c ./Energy_monitor/src/timer_driver.o
- .debug_info    0x00001564      0x871 ./Energy_monitor/src/uart_driver.o
- .debug_info    0x00001dd5       0x30 ./Startup/startup_stm32f446retx.o
+ .debug_info    0x00001564      0x88c ./Energy_monitor/src/uart_driver.o
+ .debug_info    0x00001df0       0x30 ./Startup/startup_stm32f446retx.o
 
-.debug_abbrev   0x00000000      0x844
+.debug_abbrev   0x00000000      0x862
  .debug_abbrev  0x00000000       0xc3 ./Energy_monitor/src/adc_dma_driver.o
  .debug_abbrev  0x000000c3      0x178 ./Energy_monitor/src/energy_meter.o
  .debug_abbrev  0x0000023b       0x72 ./Energy_monitor/src/fonts.o
@@ -1133,8 +1133,8 @@ LOAD C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_abbrev  0x000003fb       0x5c ./Energy_monitor/src/main.o
  .debug_abbrev  0x00000457      0x14f ./Energy_monitor/src/ssd1306.o
  .debug_abbrev  0x000005a6       0xa5 ./Energy_monitor/src/timer_driver.o
- .debug_abbrev  0x0000064b      0x1d5 ./Energy_monitor/src/uart_driver.o
- .debug_abbrev  0x00000820       0x24 ./Startup/startup_stm32f446retx.o
+ .debug_abbrev  0x0000064b      0x1f3 ./Energy_monitor/src/uart_driver.o
+ .debug_abbrev  0x0000083e       0x24 ./Startup/startup_stm32f446retx.o
 
 .debug_aranges  0x00000000      0x250
  .debug_aranges
@@ -1222,16 +1222,16 @@ LOAD C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_macro   0x00002127       0x2f ./Energy_monitor/src/uart_driver.o
  .debug_macro   0x00002156      0x137 ./Energy_monitor/src/uart_driver.o
 
-.debug_line     0x00000000     0x1ef0
+.debug_line     0x00000000     0x1ef7
  .debug_line    0x00000000      0x173 ./Energy_monitor/src/adc_dma_driver.o
  .debug_line    0x00000173      0x95c ./Energy_monitor/src/energy_meter.o
  .debug_line    0x00000acf       0xd7 ./Energy_monitor/src/fonts.o
  .debug_line    0x00000ba6      0x3a7 ./Energy_monitor/src/i2c_driver.o
  .debug_line    0x00000f4d       0xf8 ./Energy_monitor/src/main.o
- .debug_line    0x00001045      0x7ae ./Energy_monitor/src/ssd1306.o
- .debug_line    0x000017f3      0x11a ./Energy_monitor/src/timer_driver.o
- .debug_line    0x0000190d      0x568 ./Energy_monitor/src/uart_driver.o
- .debug_line    0x00001e75       0x7b ./Startup/startup_stm32f446retx.o
+ .debug_line    0x00001045      0x7b3 ./Energy_monitor/src/ssd1306.o
+ .debug_line    0x000017f8      0x11a ./Energy_monitor/src/timer_driver.o
+ .debug_line    0x00001912      0x56a ./Energy_monitor/src/uart_driver.o
+ .debug_line    0x00001e7c       0x7b ./Startup/startup_stm32f446retx.o
 
 .debug_str      0x00000000     0x8b6f
  .debug_str     0x00000000     0x8b6f ./Energy_monitor/src/adc_dma_driver.o
