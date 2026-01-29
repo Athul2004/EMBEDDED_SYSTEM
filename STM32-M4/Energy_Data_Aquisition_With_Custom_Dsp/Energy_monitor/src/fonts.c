@@ -1,6 +1,14 @@
+/*
+ * fonts.c
+ * Font Library Implementation
+ * MISRA Refactored
+ */
+
 #include "fonts.h"
 
-const uint8_t Font5x7[] = {
+// Font5x7 Data
+// 96 characters, 5 bytes each
+const uint8_t Font5x7[480] = {
     0x00, 0x00, 0x00, 0x00, 0x00, // Space (32)
     0x00, 0x00, 0x5F, 0x00, 0x00, // !
     0x00, 0x07, 0x00, 0x07, 0x00, // "

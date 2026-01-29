@@ -1,110 +1,328 @@
 /*
  * uart_driver.c
  * UART Driver Implementation for STM32F446xx
+ * MISRA Refactored
  */
 
-#include "uart_driver.h"        // Driver Header
-#include "stm32_f446xx.h"       // Device Header
+#include "uart_driver.h"
 
-/*
- * @brief  Initializes UART2 (115200 Baud, 8N1)
- * @param  None
- * @retval None
+// System Clock Definition (Needed for Baud Rate)
+#define PCLK1_FREQ 16000000U // 16 MHz
+
+/*********************************************************************
+ * @brief             - Enables or disables peripheral clock for the given USART peripheral
  */
-// --- UART ---
+void USART_PeriClockControl(USART_RegDef_t *pUSARTx, uint8_t EnOrDi)
+{
+	if(EnOrDi == ENABLE)
+	{
+		if(pUSARTx == USART1)
+		{
+             RCC->APB2ENR |= (1U << 4);
+		}else if(pUSARTx == USART2)
+		{
+             RCC->APB1ENR |= (1U << 17);
+		}else if(pUSARTx == USART3)
+		{
+             RCC->APB1ENR |= (1U << 18);
+		}
+        else if(pUSARTx == UART4)
+		{
+             RCC->APB1ENR |= (1U << 19);
+		}
+        else if(pUSARTx == UART5)
+		{
+             RCC->APB1ENR |= (1U << 20);
+		}
+        else if(pUSARTx == USART6)
+		{
+             RCC->APB2ENR |= (1U << 5);
+		}
+	}else
+	{
+		// Disable logic to be added if needed
+	}
+}
+
+/*********************************************************************
+ * @brief             - Sets the baud rate in BRR register
+ */
+void USART_SetBaudRate(USART_RegDef_t *pUSARTx, uint32_t BaudRate)
+{
+	uint32_t usartdiv;
+	uint32_t M_part, F_part;
+
+    // USARTDIV = fCK / (8 * (2 - OVER8) * BaudRate)
+    // Assuming OVER8 = 0 (Oversampling by 16) -> fCK / (16 * BaudRate)
+    
+	if(pUSARTx->CR1 & USART_CR1_OVER8)
+	{
+		//OVER8 = 1 , over sampling by 8
+		usartdiv = ((25U * PCLK1_FREQ) / (2U * BaudRate));
+	}else
+	{
+		//over sampling by 16
+		usartdiv = ((25U * PCLK1_FREQ) / (4U * BaudRate));
+	}
+
+	M_part = usartdiv / 100U;
+	pUSARTx->BRR = M_part << 4;
+
+	F_part = (usartdiv - (M_part * 100U));
+
+	if(pUSARTx->CR1 & USART_CR1_OVER8)
+	{
+		//OVER8 = 1
+		F_part = (((F_part * 8U) + 50U) / 100U) & ((uint8_t)0x07);
+
+	}else
+	{
+		//OVER8 = 0
+		F_part = (((F_part * 16U) + 50U) / 100U) & ((uint8_t)0x0F);
+	}
+
+	pUSARTx->BRR |= F_part;
+}
+
+/*********************************************************************
+ * @brief             - Initializes the USART peripheral
+ */
+void USART_Init(USART_Handle_t *pUSARTHandle)
+{
+	uint32_t tempreg=0;
+
+	/******************************** Configuration of CR1******************************************/
+
+	// Enable Clock
+	USART_PeriClockControl(pUSARTHandle->pUSARTx, ENABLE);
+
+	// Configure Mode
+	if (pUSARTHandle->USART_Config.USART_Mode == USART_MODE_ONLY_RX)
+	{
+		tempreg |= USART_CR1_RE;
+	}else if (pUSARTHandle->USART_Config.USART_Mode == USART_MODE_ONLY_TX)
+	{
+		tempreg |= USART_CR1_TE;
+	}else if (pUSARTHandle->USART_Config.USART_Mode == USART_MODE_TXRX)
+	{
+		tempreg |= (USART_CR1_RE | USART_CR1_TE);
+	}
+
+    // Configure Word Length
+	tempreg |= pUSARTHandle->USART_Config.USART_WordLength << 12; // Careful with generic shifting, but macro is 0 or 1.
+
+    // Configure Parity
+	if ( pUSARTHandle->USART_Config.USART_ParityControl == USART_PARITY_EN_EVEN)
+	{
+		tempreg |= USART_CR1_PCE;
+        // EVEN is default if PS is 0
+
+	}else if (pUSARTHandle->USART_Config.USART_ParityControl == USART_PARITY_EN_ODD)
+	{
+	    tempreg |= USART_CR1_PCE;
+	    tempreg |= USART_CR1_PS;
+	}
+
+   // Program CR1
+	pUSARTHandle->pUSARTx->CR1 = tempreg;
+
+	/******************************** Configuration of CR2******************************************/
+
+	tempreg=0;
+
+	// Configure Stop Bits
+	tempreg |= pUSARTHandle->USART_Config.USART_NoOfStopBits << 12; // STOP bits pos
+
+	// Program CR2
+	pUSARTHandle->pUSARTx->CR2 = tempreg;
+
+	/******************************** Configuration of CR3******************************************/
+
+	tempreg=0;
+
+	// Configure Flow Control
+	if ( pUSARTHandle->USART_Config.USART_HWFlowControl == USART_HW_FLOW_CTRL_CTS)
+	{
+		tempreg |= USART_CR3_CTSE;
+
+	}else if (pUSARTHandle->USART_Config.USART_HWFlowControl == USART_HW_FLOW_CTRL_RTS)
+	{
+		tempreg |= USART_CR3_RTSE;
+
+	}else if (pUSARTHandle->USART_Config.USART_HWFlowControl == USART_HW_FLOW_CTRL_CTS_RTS)
+	{
+		tempreg |= (USART_CR3_CTSE | USART_CR3_RTSE);
+	}
+
+	pUSARTHandle->pUSARTx->CR3 = tempreg;
+
+	/******************************** Configuration of BRR ******************************************/
+
+    USART_SetBaudRate(pUSARTHandle->pUSARTx, pUSARTHandle->USART_Config.USART_Baud);
+
+    // Enable USART
+    pUSARTHandle->pUSARTx->CR1 |= USART_CR1_UE;
+}
+
+/*********************************************************************
+ * @brief             - Sends data byte by byte
+ */
+void USART_SendData(USART_Handle_t *pUSARTHandle, uint8_t *pTxBuffer, uint32_t Len)
+{
+	uint16_t *pdata;
+	for(uint32_t i = 0 ; i < Len; i++)
+	{
+		// Wait until TXE flag is set
+		while(! (pUSARTHandle->pUSARTx->SR & USART_FLAG_TXE));
+
+        // Start transmission
+		if(pUSARTHandle->USART_Config.USART_WordLength == USART_WORDLEN_9BITS)
+		{
+			pdata = (uint16_t*) pTxBuffer;
+			pUSARTHandle->pUSARTx->DR = (*pdata & (uint16_t)0x01FF);
+			
+			if(pUSARTHandle->USART_Config.USART_ParityControl == USART_PARITY_DISABLE)
+			{
+				pTxBuffer++;
+				pTxBuffer++;
+			}
+			else
+			{
+				pTxBuffer++;
+			}
+		}
+		else
+		{
+			pUSARTHandle->pUSARTx->DR = (*pTxBuffer & (uint8_t)0xFF);
+			pTxBuffer++;
+		}
+	}
+
+	// Wait till TC flag is set
+	while( ! (pUSARTHandle->pUSARTx->SR & USART_FLAG_TC));
+}
+
+/*********************************************************************
+ * @brief             - Receives data byte by byte
+ */
+void USART_ReceiveData(USART_Handle_t *pUSARTHandle, uint8_t *pRxBuffer, uint32_t Len)
+{
+	for(uint32_t i = 0 ; i < Len; i++)
+	{
+		// Wait until RXNE flag is set
+		while(! (pUSARTHandle->pUSARTx->SR & USART_FLAG_RXNE));
+
+		if(pUSARTHandle->USART_Config.USART_WordLength == USART_WORDLEN_9BITS)
+		{
+			if(pUSARTHandle->USART_Config.USART_ParityControl == USART_PARITY_DISABLE)
+			{
+				*((uint16_t*) pRxBuffer) = (pUSARTHandle->pUSARTx->DR  & (uint16_t)0x01FF);
+				pRxBuffer++;
+				pRxBuffer++;
+			}
+			else
+			{
+				 *pRxBuffer = (pUSARTHandle->pUSARTx->DR  & (uint8_t)0xFF);
+				pRxBuffer++;
+			}
+		}
+		else
+		{
+			if(pUSARTHandle->USART_Config.USART_ParityControl == USART_PARITY_DISABLE)
+			{
+				 *pRxBuffer = (uint8_t) (pUSARTHandle->pUSARTx->DR  & (uint8_t)0xFF);
+			}
+			else
+			{
+				 *pRxBuffer = (uint8_t) (pUSARTHandle->pUSARTx->DR  & (uint8_t)0x7F);
+			}
+			pRxBuffer++;
+		}
+	}
+}
+
+// Stubs
+uint8_t USART_SendDataIT(USART_Handle_t *pUSARTHandle,uint8_t *pTxBuffer, uint32_t Len) { return 0; }
+uint8_t USART_ReceiveDataIT(USART_Handle_t *pUSARTHandle,uint8_t *pRxBuffer, uint32_t Len) { return 0; }
+void USART_IRQInterruptConfig(uint8_t IRQNumber, uint8_t EnorDi) {}
+void USART_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority) {}
+void USART_IRQHandling(USART_Handle_t *pUSARTHandle) {}
+void USART_ApplicationEventCallback(USART_Handle_t *pUSARTHandle,uint8_t ApEv) {}
+void USART_PeripheralControl(USART_RegDef_t *pUSARTx, uint8_t EnOrDi) {}
+uint8_t USART_GetFlagStatus(USART_RegDef_t *pUSARTx, uint8_t StatusFlagName) { return 0; }
+void USART_ClearFlag(USART_RegDef_t *pUSARTx, uint16_t StatusFlagName) {}
+
+
+// ==========================================
+// LEGACY SUPPORT IMPLEMENTATION
+// ==========================================
+
 void UART2_Init(void) {
-    // 1. Enable Clocks
-    ENABLE_GPIOA();             // Enable Clock for GPIO Port A (TX/RX Pins)
-    ENABLE_UART2();             // Enable Clock for USART2 Peripheral
+    ENABLE_GPIOA();
+    
+    // GPIO Config: PA2(TX), PA3(RX) -> AF7 (USART2)
+    // MODER: 10 (AF) for pin 2, 3 -> (2U << 4) | (2U << 6)
+    GPIOA->MODER |=  (2U << 4) | (2U << 6); 
+    GPIOA->AFRL &= ~((0xFU << 8) | (0xFU << 12)); 
+    GPIOA->AFRL |=  (7U << 8) | (7U << 12);
 
-    // 2. Configure GPIO Pins (PA2 = TX, PA3 = RX)
+    USART_Handle_t usart2_handle;
     
-    // MODER: Set PA2, PA3 to Alternate Function (10)
-    // Bits 4-5 (PA2), 6-7 (PA3). 2U = 10.
-    GPIOA->MODER |=  (2U << 4) | (2U << 6);
+    usart2_handle.pUSARTx = USART2;
+    usart2_handle.USART_Config.USART_Mode = USART_MODE_TXRX;
+    usart2_handle.USART_Config.USART_Baud = USART_STD_BAUD_115200;
+    usart2_handle.USART_Config.USART_NoOfStopBits = USART_STOPBITS_1;
+    usart2_handle.USART_Config.USART_WordLength = USART_WORDLEN_8BITS;
+    usart2_handle.USART_Config.USART_ParityControl = USART_PARITY_DISABLE;
+    usart2_handle.USART_Config.USART_HWFlowControl = USART_HW_FLOW_CTRL_NONE;
     
-    // AFRL: Set Alternate Function 7 (AF7) for USART2
-    // Bits 8-11 (PA2), 12-15 (PA3). 7U = 0111.
-    // Clear bits first (safety) then set.
-    GPIOA->AFRL &= ~((0xFU << 8) | (0xFU << 12)); // Clear AF
-    GPIOA->AFRL |=  (7U << 8) | (7U << 12);       // Set AF7
-
-    // 3. Configure USART2 Peripheral
-    
-    // BRR (Baud Rate Register): Set Baud Rate to 115200
-    // PCLK1 = 16MHz. 16000000 / (16 * 115200) = 8.68.
-    // Fraction = 0.68 * 16 = 10.88 ~ 11 (0xB). Mantissa = 8.
-    // BRR = 0x8B.
-    USART2->BRR = 0x008B;
-    
-    // CR1 (Control Register 1): Enable USART, TX, RX
-    // Bit 13 (UE) = 1: USART Enable
-    // Bit 3  (TE) = 1: Transmitter Enable
-    // Bit 2  (RE) = 1: Receiver Enable
-    USART2->CR1 = (1U << 13) | (1U << 3) | (1U << 2);
+    USART_Init(&usart2_handle);
 }
 
-/*
- * @brief  Transmit a Null-Terminated String
- * @param  string: Pointer to string character array
- * @retval None
- */
 void UART2_SendString(char *string) {
-    // Loop until null terminator '\0' is reached
     while(*string) {
-        // Wait until Transmit Data Register Empty (TXE) flag is set (SR Bit 7)
-        while (!(USART2->SR & (1U << 7)));
-        
-        // Write character to Data Register and increment pointer
-        USART2->DR = *string++;
+        USART_Handle_t handle;
+        handle.pUSARTx = USART2;
+        handle.USART_Config.USART_WordLength = USART_WORDLEN_8BITS; 
+        handle.USART_Config.USART_ParityControl = USART_PARITY_DISABLE;
+        USART_SendData(&handle, (uint8_t*)string, 1);
+        string++;
     }
 }
 
-/*
- * @brief  Transmit a Signed Integer
- * @param  number: Integer value to transmit
- * @retval None
- */
 void UART2_SendNumber(int number) {
-    char buf[12];   // Buffer to hold ASCII representation (max size for 32-bit int)
-    int i = 0;      // Index for buffer
+    char buf[12];
+    int i = 0;
+    if(number == 0) { UART2_SendString("0"); return; }
+    if(number < 0) { UART2_SendString("-"); number = -number; }
+    while(number > 0) { buf[i++] = (number % 10) + '0'; number /= 10; }
     
-    // Handle special case: 0
-    if(number == 0) { 
-        UART2_SendString("0"); 
-        return; 
-    }
+    USART_Handle_t handle;
+    handle.pUSARTx = USART2;
+    handle.USART_Config.USART_WordLength = USART_WORDLEN_8BITS; 
+    handle.USART_Config.USART_ParityControl = USART_PARITY_DISABLE;
     
-    // Handle negative numbers
-    if(number < 0) { 
-        UART2_SendString("-");  // Send minus sign
-        number = -number;       // Make number positive
-    }
-    
-    // Convert number to string in reverse order (least significant digit first)
-    while(number > 0) { 
-        buf[i++] = (number % 10) + '0'; // Extract last digit, convert to ASCII
-        number /= 10;                   // Move to next digit
-    }
-    
-    // Transmit buffer in correct order (reverse of storage)
-    while(--i >= 0) { 
-        // Wait for TXE
-        while(!(USART2->SR & (1U << 7))); 
-        // Send character
-        USART2->DR = buf[i]; 
+    while(--i >= 0) {
+        USART_SendData(&handle, (uint8_t*)&buf[i], 1);
     }
 }
 
-/*
- * @brief  Receive a single character
- * @param  None
- * @retval received char
- */
 char UART2_GetChar(void) {
-    // Wait until Read Data Register Not Empty (RXNE) flag is set (SR Bit 5)
-    while (!(USART2->SR & (1U << 5)));
+    uint8_t c;
+    USART_Handle_t handle;
+    handle.pUSARTx = USART2;
+    handle.USART_Config.USART_WordLength = USART_WORDLEN_8BITS; 
+    handle.USART_Config.USART_ParityControl = USART_PARITY_DISABLE;
     
-    // Read and return data from Data Register
-    return (char)USART2->DR;
+    USART_ReceiveData(&handle, &c, 1);
+    return (char)c;
+}
+
+void UART2_SendChar(char c) {
+    USART_Handle_t handle;
+    handle.pUSARTx = USART2;
+    handle.USART_Config.USART_WordLength = USART_WORDLEN_8BITS; 
+    handle.USART_Config.USART_ParityControl = USART_PARITY_DISABLE;
+    
+    USART_SendData(&handle, (uint8_t*)&c, 1);
 }

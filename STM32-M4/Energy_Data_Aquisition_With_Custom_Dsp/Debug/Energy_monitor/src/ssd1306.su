@@ -1,8 +1,8 @@
-../Energy_monitor/src/ssd1306.c:27:6:SSD1306_Init	48	static
-../Energy_monitor/src/ssd1306.c:64:6:SSD1306_Clear	8	static
-../Energy_monitor/src/ssd1306.c:73:6:SSD1306_Update	16	static
-../Energy_monitor/src/ssd1306.c:93:6:SSD1306_SetCursor	16	static
-../Energy_monitor/src/ssd1306.c:103:6:SSD1306_DrawChar	24	static
-../Energy_monitor/src/ssd1306.c:126:6:SSD1306_Print	16	static
-../Energy_monitor/src/ssd1306.c:138:6:SSD1306_PrintNumber	32	static
-../Energy_monitor/src/ssd1306.c:172:6:SSD1306_PrintCentered	32	static
+../Energy_monitor/src/ssd1306.c:22:6:SSD1306_Init	48	static
+../Energy_monitor/src/ssd1306.c:53:6:SSD1306_Clear	8	static
+../Energy_monitor/src/ssd1306.c:60:6:SSD1306_Update	16	static
+../Energy_monitor/src/ssd1306.c:70:6:SSD1306_SetCursor	16	static
+../Energy_monitor/src/ssd1306.c:75:6:SSD1306_DrawChar	32	static
+../Energy_monitor/src/ssd1306.c:89:6:SSD1306_Print	16	static
+../Energy_monitor/src/ssd1306.c:95:6:SSD1306_PrintNumber	32	static
+../Energy_monitor/src/ssd1306.c:119:6:SSD1306_PrintCentered	32	static

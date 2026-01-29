@@ -1,10 +1,10 @@
-23:32:42 **** Incremental Build of configuration Debug for project Energy_Data_Aquisition_With_Custom_Dsp ****
+14:31:18 **** Incremental Build of configuration Debug for project Energy_Data_Aquisition_With_Custom_Dsp ****
 make -j8 all 
 arm-none-eabi-size  Energy_Data_Aquisition_With_Custom_Dsp.elf 
    text	   data	    bss	    dec	    hex	filename
-   5556	     88	   3456	   9100	   238c	Energy_Data_Aquisition_With_Custom_Dsp.elf
+   6464	     80	   3456	  10000	   2710	Energy_Data_Aquisition_With_Custom_Dsp.elf
 Finished building: default.size.stdout
  
 
-23:32:42 Build Finished. 0 errors, 0 warnings. (took 281ms)
+14:31:18 Build Finished. 0 errors, 0 warnings. (took 190ms)
 
