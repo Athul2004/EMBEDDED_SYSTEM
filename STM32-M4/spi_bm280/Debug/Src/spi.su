@@ -1,0 +1,4 @@
+../Src/spi.c:21:6:SPI1_Init	4	static
+../Src/spi.c:95:6:SPI1_SendData	16	static
+../Src/spi.c:115:6:SPI1_ReceiveData	16	static
+../Src/spi.c:137:9:SPI1_Transfer	16	static

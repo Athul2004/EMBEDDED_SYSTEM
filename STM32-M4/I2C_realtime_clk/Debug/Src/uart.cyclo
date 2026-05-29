@@ -1,0 +1,3 @@
+../Src/uart.c:11:6:UART2_Init	1
+../Src/uart.c:37:6:UART2_WriteChar	2
+../Src/uart.c:44:6:UART2_WriteString	2

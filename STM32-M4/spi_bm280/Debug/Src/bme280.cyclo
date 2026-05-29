@@ -1,0 +1,12 @@
+../Src/bme280.c:23:13:BMP280_CS_LOW	1
+../Src/bme280.c:28:13:BMP280_CS_HIGH	1
+../Src/bme280.c:37:9:BMP280_ReadReg	1
+../Src/bme280.c:54:6:BMP280_WriteReg	1
+../Src/bme280.c:71:9:BMP280_ReadChipID	1
+../Src/bme280.c:80:17:BMP280_Read16_LE	1
+../Src/bme280.c:95:6:BMP280_ReadCalibrationData	1
+../Src/bme280.c:116:6:BMP280_Init	1
+../Src/bme280.c:136:9:BMP280_ReadRawTemperature	1
+../Src/bme280.c:152:9:BMP280_ReadRawPressure	1
+../Src/bme280.c:168:9:BMP280_ReadTemperature	1
+../Src/bme280.c:201:10:BMP280_ReadPressure	3

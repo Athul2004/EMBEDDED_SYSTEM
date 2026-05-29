@@ -1,0 +1,4 @@
+../Src/main.c:7:6:delay	16	static
+../Src/main.c:12:9:BCD_To_Dec	16	static
+../Src/main.c:17:6:UART_PrintHex	48	static
+../Src/main.c:25:5:main	16	static

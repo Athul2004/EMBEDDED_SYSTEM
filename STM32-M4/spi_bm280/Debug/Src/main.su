@@ -1,0 +1,4 @@
+../Src/main.c:23:6:delay_ms	24	static
+../Src/main.c:35:6:UART_PrintTemperature	16	static
+../Src/main.c:52:6:UART_PrintPressure	16	static
+../Src/main.c:65:5:main	24	static
