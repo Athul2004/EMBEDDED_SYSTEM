@@ -18,43 +18,34 @@
 
 #include "stm32_f446xx.h"
 
-void UART2_Init(void);
-void UART2_Write(int ch);
-void print_hello(char *msg);
-
-int main(void) {
-    UART2_Init();
-    while(1) {
-        print_hello("Hello World from STM32F446!\r\n");
-        for(uint32_t i = 0; i < 500; i++);
+// Simple software delay
+void delay_ms(uint32_t ms)
+{
+    for(uint32_t i = 0; i < ms; i++)
+    {
+        for(uint32_t j = 0; j < 1600; j++);
     }
 }
 
-void UART2_Init(void) {
-    // Corrected to match your header macro name
-    USART2_EN();
+int main(void)
+{
+    // Enable GPIOA clock
     GPIOA_CLK_EN();
 
-    // PA2 as AF mode
-    GPIOA->MODER &= ~(3 << 4);
-    GPIOA->MODER |=  (2 << 4);
+    // Configure PA5 as output
+    GPIOA->MODER &= ~(3U << (5 * 2));  // Clear MODER bits for PA5
+    GPIOA->MODER |=  (1U << (5 * 2));  // Set PA5 as output
 
-    // PA2 AF7 (USART2)
-    GPIOA->AFRL &= ~(0xF << 8);
-    GPIOA->AFRL |=  (0x7 << 8);
+    while(1)
+    {
+        // LED ON
+        GPIOA->ODR |= (1U << 5);
 
-    // 9600 Baud @ 16MHz
-    USART2->BRR = 0x0683;
+        delay_ms(1000);
 
-    USART2->CR1 |= (1 << 3);  // TE
-    USART2->CR1 |= (1 << 13); // UE
-}
+        // LED OFF
+        GPIOA->ODR &= ~(1U << 5);
 
-void UART2_Write(int ch) {
-    while (!(USART2->SR & (1 << 7)));
-    USART2->DR = (ch & 0xFF);
-}
-
-void print_hello(char *msg) {
-    while(*msg) UART2_Write(*msg++);
+        delay_ms(1000);
+    }
 }
