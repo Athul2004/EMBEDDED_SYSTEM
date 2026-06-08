@@ -1,0 +1,11 @@
+Command: cmake -G Ninja -B C:\esp_spi_temp_pre\temp_pre\build -DPYTHON_DEPS_CHECKED=1 -DPYTHON=C:\Espressif\tools\python\v6.0.1\venv\Scripts\python.exe -DESP_PLATFORM=1 -DCCACHE_ENABLE=True C:\esp_spi_temp_pre\temp_pre
+CMake Error at C:/esp/v6.0.1/esp-idf/tools/cmake/build.cmake:380 (message):
+  Failed to resolve component 'spi_master' required by component 'main':
+  unknown name.
+Call Stack (most recent call first):
+  C:/esp/v6.0.1/esp-idf/tools/cmake/build.cmake:423 (__build_resolve_and_add_req)
+  C:/esp/v6.0.1/esp-idf/tools/cmake/build.cmake:753 (__build_expand_requirements)
+  C:/esp/v6.0.1/esp-idf/tools/cmake/project.cmake:773 (idf_build_process)
+  CMakeLists.txt:6 (project)
+
+

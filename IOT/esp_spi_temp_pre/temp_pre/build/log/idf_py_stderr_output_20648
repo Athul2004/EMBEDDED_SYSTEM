@@ -1,0 +1,15 @@
+Command: cmake -G Ninja -B C:\esp_spi_temp_pre\temp_pre\build -DPYTHON_DEPS_CHECKED=1 -DPYTHON=C:\Espressif\tools\python\v6.0.1\venv\Scripts\python.exe -DESP_PLATFORM=1 -DCCACHE_ENABLE=True C:\esp_spi_temp_pre\temp_pre
+Configuration Report               
++---------------------------------+
+|  Parser Version: 1              |
+|  Verbosity: default             |
+|  Defaults policy: sdkconfig     |
+|  Status: Finished successfully  |
+|                                 |
++---------------------------------+
+CMake Error at C:/esp/v6.0.1/esp-idf/tools/cmake/component.cmake:454 (message):
+  Called idf_component_register from a non-component directory.
+Call Stack (most recent call first):
+  CMakeLists.txt:9 (idf_component_register)
+
+
