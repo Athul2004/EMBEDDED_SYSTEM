@@ -1,0 +1,25 @@
+#ifndef APP_CONFIG_H
+#define APP_CONFIG_H
+
+// Target phone number for SMS
+#define APP_TARGET_PHONE_NUMBER       "9188127331"
+
+// Task Delays/Intervals (in ms)
+#define APP_SENSOR_READ_INTERVAL_MS   100
+#define APP_DSP_PROCESS_INTERVAL_MS   100
+#define APP_TELEMETRY_SPI_INTERVAL_MS 500
+#define APP_TELEMETRY_UART_INTERVAL_MS 500
+#define APP_GSM_HANDLER_INTERVAL_MS   50
+#define APP_WATCHDOG_INTERVAL_MS      1000
+#define APP_EXAMPLE_HEARTBEAT_MS      2000
+
+// Task Priorities
+#define APP_PRIORITY_WATCHDOG         5
+#define APP_PRIORITY_SENSOR_ACQ       3
+#define APP_PRIORITY_DSP              3
+#define APP_PRIORITY_GSM              2
+#define APP_PRIORITY_TELEMETRY_SPI    2
+#define APP_PRIORITY_TELEMETRY_UART   1
+#define APP_PRIORITY_EXAMPLE          1
+
+#endif // APP_CONFIG_H

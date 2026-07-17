@@ -1,0 +1,42 @@
+#ifndef BOARD_CONFIG_H
+#define BOARD_CONFIG_H
+
+#include "drivers/stm32f446xx.h"
+
+// I2C1 Pins (PB8=SCL, PB9=SDA)
+#define BOARD_I2C1_PORT        GPIOB
+#define BOARD_I2C1_SCL_PIN     GPIO_PIN_NO_8
+#define BOARD_I2C1_SDA_PIN     GPIO_PIN_NO_9
+#define BOARD_I2C1_AF          4
+
+// USART2 Pins for Debug (PA2=TX, PA3=RX)
+#define BOARD_USART2_PORT      GPIOA
+#define BOARD_USART2_TX_PIN    GPIO_PIN_NO_2
+#define BOARD_USART2_RX_PIN    GPIO_PIN_NO_3
+#define BOARD_USART2_AF        7
+
+// SPI1 Pins for Telemetry (PA5=SCK, PA6=MISO, PA7=MOSI)
+#define BOARD_SPI1_PORT        GPIOA
+#define BOARD_SPI1_SCK_PIN     GPIO_PIN_NO_5
+#define BOARD_SPI1_MISO_PIN    GPIO_PIN_NO_6
+#define BOARD_SPI1_MOSI_PIN    GPIO_PIN_NO_7
+#define BOARD_SPI1_AF          5
+
+// SPI1 CS Pin (PB6)
+#define BOARD_SPI1_CS_PORT     GPIOB
+#define BOARD_SPI1_CS_PIN      GPIO_PIN_NO_6
+
+// GSM UART1 Pins (PA9=TX, PA10=RX)
+#define BOARD_GSM_UART_PORT    GPIOA
+#define BOARD_GSM_TX_PIN       GPIO_PIN_NO_9
+#define BOARD_GSM_RX_PIN       GPIO_PIN_NO_10
+#define BOARD_GSM_UART_AF      7
+
+// GSM Button Pin (PA8)
+#define BOARD_GSM_BUTTON_PORT  GPIOA
+#define BOARD_GSM_BUTTON_PIN   GPIO_PIN_NO_8
+
+// IWDG Configuration
+#define BOARD_IWDG_RELOAD_VAL  2500
+
+#endif // BOARD_CONFIG_H
