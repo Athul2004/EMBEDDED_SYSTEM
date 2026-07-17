@@ -1,0 +1,415 @@
+[
+    {
+        "id": "56707de4417f99f5",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b73a95e0cdf6d25e",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5bfe211f78d35800",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "mqtt_broker_1",
+        "type": "mqtt-broker",
+        "name": "HiveMQ Test Broker",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "ui_tab_1",
+        "type": "ui_tab",
+        "name": "Telemetry Dashboard",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ui_group_1",
+        "type": "ui_group",
+        "name": "Sensor Readings",
+        "tab": "ui_tab_1",
+        "order": 1,
+        "disp": true,
+        "width": "24",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e76898c75644744e",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "b20a135ae310ab91",
+        "type": "mqtt in",
+        "z": "5bfe211f78d35800",
+        "name": "Receive Telemetry",
+        "topic": "telemetry/bmp280",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "mqtt_broker_1",
+        "inputs": 0,
+        "x": 270,
+        "y": 220,
+        "wires": [
+            [
+                "f335b5cc1504a612",
+                "6b905f3b27f6a4da",
+                "aac236bdf6d387f0",
+                "0ea04f4c1cb32d39"
+            ]
+        ]
+    },
+    {
+        "id": "f335b5cc1504a612",
+        "type": "function",
+        "z": "5bfe211f78d35800",
+        "name": "Extract Temperature",
+        "func": "try {\n    let data = typeof msg.payload === 'string' ? JSON.parse(msg.payload) : msg.payload;\n    if (data && data.temperature !== undefined) {\n        msg.payload = data.temperature;\n        return msg;\n    }\n} catch (e) {}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 520,
+        "y": 180,
+        "wires": [
+            [
+                "e883cb05ecfb29b4"
+            ]
+        ]
+    },
+    {
+        "id": "6b905f3b27f6a4da",
+        "type": "function",
+        "z": "5bfe211f78d35800",
+        "name": "Extract Pressure",
+        "func": "try {\n    let data = typeof msg.payload === 'string' ? JSON.parse(msg.payload) : msg.payload;\n    if (data && data.pressure !== undefined) {\n        msg.payload = data.pressure;\n        return msg;\n    }\n} catch (e) {}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 520,
+        "y": 260,
+        "wires": [
+            [
+                "f8f42271f4c541ef"
+            ]
+        ]
+    },
+    {
+        "id": "e883cb05ecfb29b4",
+        "type": "ui_gauge",
+        "z": "5bfe211f78d35800",
+        "name": "Temperature Gauge",
+        "group": "ui_group_1",
+        "order": 1,
+        "width": 6,
+        "height": 6,
+        "gtype": "gage",
+        "title": "Temperature (°C)",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": "-40",
+        "max": "85",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "25",
+        "seg2": "40",
+        "diff": false,
+        "className": "",
+        "x": 770,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "f8f42271f4c541ef",
+        "type": "ui_gauge",
+        "z": "5bfe211f78d35800",
+        "name": "Pressure Gauge",
+        "group": "ui_group_1",
+        "order": 2,
+        "width": 6,
+        "height": 6,
+        "gtype": "gage",
+        "title": "Pressure (hPa)",
+        "label": "hPa",
+        "format": "{{value}}",
+        "min": "300",
+        "max": "1100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "700",
+        "seg2": "1000",
+        "diff": false,
+        "className": "",
+        "x": 770,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "84cec14dc6eb25de",
+        "type": "ui_button",
+        "z": "5bfe211f78d35800",
+        "name": "Send SMS Trigger",
+        "group": "ui_group_1",
+        "order": 5,
+        "width": 24,
+        "height": 2,
+        "passthru": false,
+        "label": "Send SMS",
+        "tooltip": "Triggers STM32 to send SMS",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "trigger_sms",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 270,
+        "y": 340,
+        "wires": [
+            [
+                "00e18fe9d19d5502"
+            ]
+        ]
+    },
+    {
+        "id": "00e18fe9d19d5502",
+        "type": "mqtt out",
+        "z": "5bfe211f78d35800",
+        "name": "Publish SMS Command",
+        "topic": "command/sms",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "mqtt_broker_1",
+        "x": 520,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "aac236bdf6d387f0",
+        "type": "function",
+        "z": "5bfe211f78d35800",
+        "name": "Extract Altitude",
+        "func": "try {\n    let data = typeof msg.payload === 'string' ? JSON.parse(msg.payload) : msg.payload;\n    if (data && data.altitude !== undefined) {\n        msg.payload = data.altitude;\n        return msg;\n    }\n} catch (e) {}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 520,
+        "y": 420,
+        "wires": [
+            [
+                "95ce77b83af178dc"
+            ]
+        ]
+    },
+    {
+        "id": "0ea04f4c1cb32d39",
+        "type": "function",
+        "z": "5bfe211f78d35800",
+        "name": "Extract Vert Speed",
+        "func": "try {\n    let data = typeof msg.payload === 'string' ? JSON.parse(msg.payload) : msg.payload;\n    if (data && data.vertical_speed !== undefined) {\n        msg.payload = data.vertical_speed;\n        return msg;\n    }\n} catch (e) {}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 520,
+        "y": 500,
+        "wires": [
+            [
+                "c688eea5b67e0520"
+            ]
+        ]
+    },
+    {
+        "id": "95ce77b83af178dc",
+        "type": "ui_gauge",
+        "z": "5bfe211f78d35800",
+        "name": "Altitude Gauge",
+        "group": "ui_group_1",
+        "order": 3,
+        "width": 6,
+        "height": 6,
+        "gtype": "gage",
+        "title": "Altitude (m)",
+        "label": "m",
+        "format": "{{value}}",
+        "min": "-50",
+        "max": "5000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "1000",
+        "seg2": "3000",
+        "diff": false,
+        "className": "",
+        "x": 770,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "c688eea5b67e0520",
+        "type": "ui_gauge",
+        "z": "5bfe211f78d35800",
+        "name": "Vertical Speed Gauge",
+        "group": "ui_group_1",
+        "order": 4,
+        "width": 6,
+        "height": 6,
+        "gtype": "gage",
+        "title": "Vertical Speed (m/s)",
+        "label": "m/s",
+        "format": "{{value}}",
+        "min": "-20",
+        "max": "20",
+        "colors": [
+            "#ca3838",
+            "#00b500",
+            "#ca3838"
+        ],
+        "seg1": "-10",
+        "seg2": "10",
+        "diff": false,
+        "className": "",
+        "x": 770,
+        "y": 500,
+        "wires": []
+    }
+]
